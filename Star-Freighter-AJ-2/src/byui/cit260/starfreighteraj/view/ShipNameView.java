@@ -53,19 +53,16 @@ public class ShipNameView extends View {
             return false;
         }
         
-        if (value.toUpperCase().equals("ENTERPRISE")) {
-                this.displayNextViewEnterprise();
-        }
-        
-        this.displayNextView(ship);
+       this.displayNextView(ship);
     
         return true;
         
     }
 
-    private void displayNextViewEnterprise() {
-                
-                System.out.println(
+    private void displayNextView(ShipModel ship) {
+        
+        if (ship.getName().toUpperCase().equals("ENTERPRISE")) {
+            System.out.println(
                          "\n************************************************"
                        + "\n*                                              *"
                        + "\n* 'Enterprise,' huh? How original. Did you     *"
@@ -85,14 +82,9 @@ public class ShipNameView extends View {
                        + "\n*                                              *"
                        + "\n************************************************"
                        );
-        
-        MainMenuView mainMenuView = new MainMenuView();
-        
-        mainMenuView.display();
-    }
-
-    private void displayNextView(ShipModel ship) {
-        System.out.println(
+        }
+        else {
+            System.out.println(
                          "\n************************************************"
                        + "\n                                                "
                        + "\n Wow, '" + ship.getName() + "' is an awesome    "
@@ -109,6 +101,7 @@ public class ShipNameView extends View {
                        + "\n                                                "
                        + "\n************************************************"
                        );
+        }
         
         MainMenuView mainMenuView = new MainMenuView();
         

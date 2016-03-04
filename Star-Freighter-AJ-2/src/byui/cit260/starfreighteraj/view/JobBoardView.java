@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author AlecSir
  */
-public class JobBoardView extends View{
+public class JobBoardView extends View {
     
     public JobBoardView() {
         super("\n************************************************"
