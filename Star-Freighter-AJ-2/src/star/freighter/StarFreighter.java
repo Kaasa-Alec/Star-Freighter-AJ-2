@@ -84,6 +84,8 @@ public class StarFreighter {
         
         String resourceInfo = resourceOne.toString();
         System.out.println(resourceInfo);
+        
+       
 
 
 

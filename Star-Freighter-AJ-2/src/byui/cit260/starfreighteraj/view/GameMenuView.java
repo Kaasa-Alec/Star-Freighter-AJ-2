@@ -23,6 +23,7 @@ public class GameMenuView extends View {
               + "\nI - Inventory"
               + "\nL - Location chooser"
               + "\nV - Vendor menu"
+              + "\nD - Design Crate" 
               + "\nQ - Back to Main Menu"
               + "\n--------------------------------------------");
     }
@@ -41,6 +42,9 @@ public class GameMenuView extends View {
             case "V":
                 this.displayVendorMenu();
                 break;
+            case "D":
+                this.displayDesignCrateView();
+                break;    
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 valid = false; // HERE WAS THE PROBLEM, WATCH OUT IN FUTURE
@@ -61,6 +65,11 @@ public class GameMenuView extends View {
     private void displayVendorMenu() {
         VendorMenuView vendorMenuView = new VendorMenuView();
         vendorMenuView.display();
+    }
+    
+    private void displayDesignCrateView() {
+        DesignCrateView designCrateView = new DesignCrateView();
+        designCrateView.display();
     }
   
 
