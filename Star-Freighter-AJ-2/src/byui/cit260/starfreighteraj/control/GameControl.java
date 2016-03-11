@@ -30,8 +30,25 @@ public class GameControl {
     }
 
     public static void createNewGame(Player player) {
-        System.out.println("*** createNewGame function called ***");
+        Game game = new Game(); //create new game
+        StarFreighterAJ.setCurrentGame(game); //save in StarFreighterAJ
+        
+        game.setPlayer(player); //save player in game
+                
+        //create the inventory list and save in the game
+        Inventory[] inventoryList = GameControl.createInventoryList();
+        game.setInventory(inventoryList);
+        
+        StarShip starship = new StarShip(); //create new starship
+        game.setStarShip(starship); //save starship in game 
+        
+        Map map = MapControl.createMap(); //create and initialize new map
+        game.setMap(map); //save map in game
+        
+        //move actors t ostarting position in the map
+        MapControl.moveActorsToStartingLocation(map);
     }
+        
 
     public static ShipModel createShip(String name) {
         
