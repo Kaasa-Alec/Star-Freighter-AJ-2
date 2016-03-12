@@ -21,6 +21,8 @@ public class Location implements Serializable{
     private int amountRemaining;
     private Scene scene;
     private ArrayList<Actor> actors;
+    public boolean getVisited;
+    public boolean setVisited;
 
     public Location() {
     }
@@ -105,8 +107,14 @@ public class Location implements Serializable{
         return "Location{" + "row=" + row + ", column=" + column + ", explored=" + explored + ", amountRemaining=" + amountRemaining + '}';
     }
 
-    void setVisited(boolean b) {
-        
+    private boolean visited = false;
+    
+    public boolean getVisited (boolean newValue) {
+        return visited;
+    }
+    
+    public void setVisited(boolean newValue) {
+        visited = newValue;
     }
 
     public void setScene(Scene scene) {

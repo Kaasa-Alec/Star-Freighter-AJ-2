@@ -19,7 +19,7 @@ import star.freighter.aj.StarFreighterAJ;
  */
 public class GameMenuView extends View {
 
-    private Location[][] location;
+    private Location location;
     private int noOfRows;
     private int noOfColumns;
     
@@ -84,16 +84,16 @@ public class GameMenuView extends View {
     private void displayMapView() {
         
         // get the map locations from the current game
-        Location[] locations = GameControl.getMapLocations();
+        Location[][] locations = GameControl.getMapLocations();
         //DISPLAY title
         System.out.println("\nView Map");
         //DISPLAY row of column numbers
-        System.out.println("");
+        System.out.println("1" + "\t" + "2" + "\t" + "3" + "\t" + "4");
         
         //FOR every row in map
         for (int row = 0; row < noOfRows; row++) {
             //DISPLAY row divider
-            System.out.println("\n**************************************");
+            System.out.println("\n**********************************************");
             //DISPLAY row number
             System.out.println(row);
             //FOR every column in row
@@ -101,23 +101,25 @@ public class GameMenuView extends View {
                 //DISPLAY column divider
                 System.out.println("\n | ");
                 //location = locations[row][column]
-                location = locations[0][0];
+                locations[0][0] = location;
                 //IF location has been visited
-                if (locations[row][column] && !visited[row][column]){
+                if (locations[row][column].getVisited && locations[row][column].getVisited == false){
                     // DISPLAY the map symbol for location
-                
-                //ELSE
-                
-                    //DISPLAY " ?? "
-                
+                    System.out.println(" ~~~~ ");
                 //ENDIF
-                
+                }
+                //ELSE
+                else {
+                    //DISPLAY " ?? "
+                    System.out.println(" ?? ");
+                    //ENDELSE
+                        }
                 //DISPLAY ending column divider
-            
+                System.out.println("\n | ");
             //ENDFOR
             }
             //DISPLAY ending row divider
-                
+            System.out.println("\n**********************************************");
         //END
         }
     }

@@ -131,8 +131,8 @@ public class GameControl {
         Location[][] locations = map.getLocations();
         
         // start point
-        locations[0][1].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][2].setScene(scenes[SceneType.finish.ordinal()]);
+        locations[0][2].setScene(scenes[SceneType.start.ordinal()]);
+        locations[0][9].setScene(scenes[SceneType.finish.ordinal()]);
         
     }
 
@@ -152,7 +152,7 @@ public class GameControl {
         return null;
     }
     
-    public static Location[] getMapLocations() {
+    public static Location[][] getMapLocations() {
         System.out.println("\n*** getMapLocations stub function called *** ");
         return null;
     }

@@ -33,7 +33,7 @@ public class MapControl {
         
     }
 
-    public static Scene[] createScenes() {
+    private static Scene[] createScenes() {
         Game game = StarFreighterAJ.getCurrentGame();
         
         Scene[] scenes = new Scene[SceneType.values().length];
