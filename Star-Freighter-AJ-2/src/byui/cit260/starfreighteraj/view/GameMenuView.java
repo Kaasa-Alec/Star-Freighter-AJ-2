@@ -5,7 +5,9 @@
  */
 package byui.cit260.starfreighteraj.view;
 
+import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.control.ShopControl;
+import byui.cit260.starfreighteraj.model.InventoryItem;
 import java.util.Scanner;
 import star.freighter.aj.StarFreighterAJ;
 
@@ -34,10 +36,10 @@ public class GameMenuView extends View {
         boolean valid = true;
         switch (value) {
             case "I":
-                this.displayInventoryScreen();
+                this.displayInventoryView();
                 break;
             case "L":
-                this.displayLocationChooser();
+                this.displayMapView();
                 break;
             case "V":
                 this.displayVendorMenu();
@@ -54,12 +56,26 @@ public class GameMenuView extends View {
         return false;
     }
         
-    private void displayInventoryScreen() {
-        System.out.println("*** displayInventoryScreen function called ***");
+    private void displayInventoryView() {
+        // get the sorted list of inventory items for the current game
+        InventoryItem[] inventory = GameControl.getSortedInventoryList();
+        
+        System.out.println("\nList of Inventory Items");
+        System.out.println("Description" + "\t" +
+                           "Required" + "\t" + 
+                           "In Stock");
+        
+        // for each inventory item
+        for (InventoryItem inventoryItem : inventory) {
+            // DISPLAY the description, the required amount and amount in stock
+            System.out.println(inventoryItem.getDescription() + "\t    " +
+                               inventoryItem.getRequiredAmount() + "\t    " +
+                               inventoryItem.getQuantityInStock());
+        }
     }
     
-    private void displayLocationChooser() {
-        System.out.println("*** displayLocationChooser function called ***");
+    private void displayMapView() {
+        
     }
 
     private void displayVendorMenu() {

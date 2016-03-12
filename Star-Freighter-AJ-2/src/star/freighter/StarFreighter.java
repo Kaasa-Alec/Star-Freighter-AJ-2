@@ -6,10 +6,10 @@
 package star.freighter;
 
 import byui.cit260.starfreighteraj.model.Player;
-import byui.cit260.starfreighteraj.model.RegularScene;
+import byui.cit260.starfreighteraj.model.Scene;
 import byui.cit260.starfreighteraj.model.Shop;
 import byui.cit260.starfreighteraj.model.ShipUpgrade;
-import byui.cit260.starfreighteraj.model.Inventory;
+import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Resource;
 
 /**
@@ -32,15 +32,15 @@ public class StarFreighter {
         System.out.println(playerInfo);
         
         
-        RegularScene regularSceneOne = new RegularScene();
+        Scene sceneOne = new Scene();
        
-        regularSceneOne.setDescription("Bridge");
-        regularSceneOne.setTravelTime(24.00);
-        regularSceneOne.setBlocked(true);
-        regularSceneOne.setSymbol('A');
+        sceneOne.setDescription("Bridge");
+        sceneOne.setTravelTime(24.00);
+        sceneOne.setBlocked(true);
+        sceneOne.setSymbol('A');
         
-        String regularSceneInfo = regularSceneOne.toString();
-        System.out.println(regularSceneInfo);
+        String sceneInfo = sceneOne.toString();
+        System.out.println(sceneInfo);
         
         
         Shop shopOne = new Shop();
@@ -66,7 +66,7 @@ public class StarFreighter {
         System.out.println(shipUpgradeInfo);
         
         
-        Inventory inventoryOne = new Inventory();
+        InventoryItem inventoryOne = new InventoryItem();
         
         inventoryOne.setInventoryType("Weapon");
         inventoryOne.setQuantityInStock(65);
@@ -84,11 +84,6 @@ public class StarFreighter {
         
         String resourceInfo = resourceOne.toString();
         System.out.println(resourceInfo);
-        
-       
-
-
-
         
     }
     

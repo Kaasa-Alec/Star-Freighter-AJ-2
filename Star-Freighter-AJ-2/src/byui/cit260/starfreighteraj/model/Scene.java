@@ -7,12 +7,13 @@ package byui.cit260.starfreighteraj.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import star.freighter.aj.StarFreighterAJ;
 
 /**
  *
  * @author AlecSir
  */
-public class RegularScene implements Serializable {
+public class Scene implements Serializable {
  
     private String description;
     private double travelTime;
@@ -79,7 +80,7 @@ public class RegularScene implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RegularScene other = (RegularScene) obj;
+        final Scene other = (Scene) obj;
         if (Double.doubleToLongBits(this.travelTime) != Double.doubleToLongBits(other.travelTime)) {
             return false;
         }
@@ -95,11 +96,8 @@ public class RegularScene implements Serializable {
         return true;
     }
 
-    
-    
-    public RegularScene() {
+    public void setMapSymbol(String _st_) {
+
     }
-    
-    
     
 }

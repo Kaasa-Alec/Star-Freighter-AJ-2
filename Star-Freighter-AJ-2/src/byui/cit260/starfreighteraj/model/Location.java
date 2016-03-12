@@ -6,6 +6,7 @@
 package byui.cit260.starfreighteraj.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,12 +15,18 @@ import java.io.Serializable;
 public class Location implements Serializable{
     
     //class instance variables
-    private double row;
-    private double column;
+    private int row;
+    private int column;
     private boolean explored;
-    private double amountRemaining;
+    private int amountRemaining;
+    private Scene scene;
+    private ArrayList<Actor> actors;
 
     public Location() {
+    }
+
+    Location(int i, int i0) {
+        
     }
     
     
@@ -28,7 +35,7 @@ public class Location implements Serializable{
         return row;
     }
 
-    public void setRow(double row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
@@ -36,7 +43,7 @@ public class Location implements Serializable{
         return column;
     }
 
-    public void setColumn(double column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 
@@ -52,7 +59,7 @@ public class Location implements Serializable{
         return amountRemaining;
     }
 
-    public void setAmountRemaining(double amountRemaining) {
+    public void setAmountRemaining(int amountRemaining) {
         this.amountRemaining = amountRemaining;
     }
 
@@ -96,6 +103,14 @@ public class Location implements Serializable{
     @Override
     public String toString() {
         return "Location{" + "row=" + row + ", column=" + column + ", explored=" + explored + ", amountRemaining=" + amountRemaining + '}';
+    }
+
+    void setVisited(boolean b) {
+        
+    }
+
+    public void setScene(Scene scene) {
+
     }
     
     

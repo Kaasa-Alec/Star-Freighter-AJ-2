@@ -5,6 +5,7 @@
  */
 package byui.cit260.starfreighteraj.model;
 
+import byui.cit260.starfreighteraj.model.Location;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -16,39 +17,25 @@ public enum Actor implements Serializable{
     
     Bill ("Vendor clerk, Guy at the counter."),
     Riley ("Ship mechanic."),
-    Phillip J Bender ("First Officer of the ship, provides hints."),
-    Place Holder One ("Random encounter on the station."),
-    Place Holder Two ("Provides job opportunity on the station."),
-    Smuggler Three ("Game enemy."),
-    Pirate Four ("Game enemy.");
+    Phillip ("First Officer of the ship, provides hints."),
+    PlaceHolderOne ("Random encounter on the station."),
+    PlaceHolderTwo ("Provides job opportunity on the station."),
+    Smuggler ("Game enemy."),
+    Pirate ("Game enemy.");
 
     private final String description;
-    private final Point coordinates;
+    private final Location coordinates;
 
     Actor (String description) {
         this.description = description;
-        coordinates = new Point (1,1);
+        coordinates = new Location(1,1);
     }
     
     public String getDescription() {
         return description;
     }
 
-    public double getCoordinates() {
+    public Location getCoordinates() {
         return coordinates;
-    }
-
-   
-
-    
-
-    @Override
-    public String toString() {
-        return "Character{" + "name=" + name + ", description=" + description + ", coordinates=" + coordinates + ", statistics=" + statistics + '}';
-    }
-    
-    
-    
-    
-    
+    }   
 }

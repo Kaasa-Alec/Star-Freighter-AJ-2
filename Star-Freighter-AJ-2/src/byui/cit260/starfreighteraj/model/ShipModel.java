@@ -16,8 +16,27 @@ public class ShipModel implements Serializable{
     
     // class instance variables
     private String name;
+    private String description;
+    private double width;
+    private double length;
+    private double height;
+    private double maxCapacity;
 
     public ShipModel() {
+        this.description = "\nThis is the ship your dad left you when he died."
+                         + "\nHe always dreamed that you'd one day follow in his"
+                         + "\nfootsteps, and now that you've flunked out of the"
+                         + "\nUniversity of Arboles Mentirosos, looks like "
+                         + "\nyou've run out of options."
+                         + "\n"
+                         + "\nShe's old and rickety, but if you fix her up,"
+                         + "\nyou might just be able to pay off those student"
+                         + "\nloans and make a profit while you're at it.";
+        this.width = 0;
+        this.length = 0;
+        this.height = 0;
+        this.maxCapacity = 0;
+        
     }
 
     

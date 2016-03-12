@@ -16,10 +16,11 @@ public class Game implements Serializable  {
     //class instance variable
     private double totalTime;
     private StarShip starship;
-    private Inventory[] inventory;
+    private InventoryItem[] inventory;
     private Player player;
     private String [] actors;
     private Map map;
+    private double numberOfPlayers;
 
     public Game() {
     }
@@ -32,11 +33,11 @@ public class Game implements Serializable  {
         this.totalTime = totalTime;
     }
 
-    public Inventory[] getInventory() {
+    public InventoryItem[] getInventory() {
         return inventory;
     }
 
-    public void setInventory(Inventory[] inventory) {
+    public void setInventory(InventoryItem[] inventory) {
         this.inventory = inventory;
     }
 
@@ -68,7 +69,7 @@ public class Game implements Serializable  {
         return starship;
     }
 
-    public void setStarShip(StarShip starship) {
+    public void setStarShip(ShipModel ship) {
         this.starship = starship;
     }
     
