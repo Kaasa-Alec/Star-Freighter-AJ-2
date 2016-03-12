@@ -151,4 +151,9 @@ public class GameControl {
         System.out.println("\n*** getSortedInventoryList stub function called ***");
         return null;
     }
+    
+    public static Location[] getMapLocations() {
+        System.out.println("\n*** getMapLocations stub function called *** ");
+        return null;
+    }
 }

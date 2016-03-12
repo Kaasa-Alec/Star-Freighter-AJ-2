@@ -8,6 +8,8 @@ package byui.cit260.starfreighteraj.view;
 import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.control.ShopControl;
 import byui.cit260.starfreighteraj.model.InventoryItem;
+import byui.cit260.starfreighteraj.model.Location;
+import byui.cit260.starfreighteraj.model.Map;
 import java.util.Scanner;
 import star.freighter.aj.StarFreighterAJ;
 
@@ -16,6 +18,11 @@ import star.freighter.aj.StarFreighterAJ;
  * @author JeffJones
  */
 public class GameMenuView extends View {
+
+    private Location[][] location;
+    private int noOfRows;
+    private int noOfColumns;
+    
     
     public GameMenuView() {
         super("\n"
@@ -76,6 +83,43 @@ public class GameMenuView extends View {
     
     private void displayMapView() {
         
+        // get the map locations from the current game
+        Location[] locations = GameControl.getMapLocations();
+        //DISPLAY title
+        System.out.println("\nView Map");
+        //DISPLAY row of column numbers
+        System.out.println("");
+        
+        //FOR every row in map
+        for (int row = 0; row < noOfRows; row++) {
+            //DISPLAY row divider
+            System.out.println("\n**************************************");
+            //DISPLAY row number
+            System.out.println(row);
+            //FOR every column in row
+            for (int column = 0; column < noOfColumns; column++) {
+                //DISPLAY column divider
+                System.out.println("\n | ");
+                //location = locations[row][column]
+                location = locations[0][0];
+                //IF location has been visited
+                if (locations[row][column] && !visited[row][column]){
+                    // DISPLAY the map symbol for location
+                
+                //ELSE
+                
+                    //DISPLAY " ?? "
+                
+                //ENDIF
+                
+                //DISPLAY ending column divider
+            
+            //ENDFOR
+            }
+            //DISPLAY ending row divider
+                
+        //END
+        }
     }
 
     private void displayVendorMenu() {
@@ -87,8 +131,4 @@ public class GameMenuView extends View {
         DesignCrateView designCrateView = new DesignCrateView();
         designCrateView.display();
     }
-  
-
-  //ShopControl.createNewShop(StarFreighterAJ.getPlayer());  
-
 }

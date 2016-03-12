@@ -102,10 +102,7 @@ public class Map implements Serializable{
     }
 
     public Location[][] getLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
-    
+        System.out.println("\n*** getMapLocations stub function called *** ");
+        return null;
+    } 
 }
