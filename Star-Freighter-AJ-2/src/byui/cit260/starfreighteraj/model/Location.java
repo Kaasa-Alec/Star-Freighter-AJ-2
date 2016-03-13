@@ -27,7 +27,7 @@ public class Location implements Serializable{
     public Location() {
     }
 
-    Location(int i, int i0) {
+    Location(int i, int j) {
         
     }
     

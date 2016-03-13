@@ -131,8 +131,8 @@ public class GameControl {
         Location[][] locations = map.getLocations();
         
         // start point
-        locations[0][2].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][9].setScene(scenes[SceneType.finish.ordinal()]);
+        locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
+        locations[0][1].setScene(scenes[SceneType.finish.ordinal()]);
         
     }
 
