@@ -77,6 +77,11 @@ public class ShipUpgrade implements Serializable{
         System.out.println("\n*** getUpgradeAvailable stub function called ***");
         return null;
     }
+
+    public String getUpgradeType() {
+        System.out.println("\n*** getUpgradeType stub function called ***");
+        return null;
+    }
   }
 
 

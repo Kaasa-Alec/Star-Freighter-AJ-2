@@ -57,8 +57,6 @@ public class StarFreighter {
         ShipUpgrade shipUpgradeOne = new ShipUpgrade();
         
         shipUpgradeOne.setDescription("Guns");
-        shipUpgradeOne.setTravelTime(1.00);
-        shipUpgradeOne.setBlocked(false);
         shipUpgradeOne.setUpgradeAvailable(true);
         shipUpgradeOne.setUpgradeType("Stronger lasers");
         

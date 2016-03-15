@@ -78,13 +78,15 @@ public class VendorMenuView extends View{
         
         System.out.println("\nList Upgrade Items");
         System.out.println("Description" + "\t" +
-                           "Available");
+                           "Available" + "\t" +
+                            "Type");
         
         // for each inventory item
-        for (ShipUpgrade upgradeItem : upgrade) {
+        for (ShipUpgrade shipUpgrade : upgrade) {
             // DISPLAY the description, the required amount and amount in stock
-            System.out.println(upgradeItem.getDescription() + "\t    " +
-                               upgradeItem.getUpgradeAvailable());
+            System.out.println(shipUpgrade.getDescription() + "\t    " +
+                               shipUpgrade.getUpgradeAvailable() + "\t    " +
+                               shipUpgrade.getUpgradeType());
         }
     }
 
