@@ -6,13 +6,14 @@
 package byui.cit260.starfreighteraj.view;
 
 
+import byui.cit260.starfreighteraj.control.GameControl;
+import static byui.cit260.starfreighteraj.control.GameControl.Item.crate;
 import java.util.Scanner;
 
 
 
 public class DesignCrateView extends View {
 
-    private NewCrate crate;
     
     public DesignCrateView() {
         super("\nPlease enter crate volume measurements:");
@@ -30,10 +31,11 @@ public class DesignCrateView extends View {
         
         return true;
     }
-    private void displayNextCrateView(NewCrate crate) {
 
-    
-}
+    private void displayNextCrateView(GameControl.Item item) {
+        System.out.println("*** displayNextCrateView function called ***");
+    }
+} 
 
    
     
