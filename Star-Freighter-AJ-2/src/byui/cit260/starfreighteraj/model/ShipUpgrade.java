@@ -15,6 +15,8 @@ import java.util.Objects;
 public class ShipUpgrade implements Serializable{
     
     private String description;
+    private double travelTime;
+    private boolean blocked;
     private boolean upgradeAvailable;
     private String upgradeType;
     private ShipUpgrade obj;
@@ -26,13 +28,29 @@ public class ShipUpgrade implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public double getTravelTime() {
+        return travelTime;
+    }
 
     public void setUpgradeAvailable(boolean b) {
 
     }
 
+    public void setTravelTime(double travelTime) {
+        this.travelTime = travelTime;
+    }
+    
+    public boolean isBlocked() {
+        return blocked;
+    }
+    
     public void setUpgradeType(String stronger_lasers) {
 
+    }
+    
+    public void setBlocked(boolean b) {
+        
     }
     
      @Override
