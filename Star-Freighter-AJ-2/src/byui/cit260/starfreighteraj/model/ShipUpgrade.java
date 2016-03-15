@@ -15,36 +15,16 @@ import java.util.Objects;
 public class ShipUpgrade implements Serializable{
     
     private String description;
-    private double travelTime;
-    private boolean blocked;
     private boolean upgradeAvailable;
     private String upgradeType;
+    private ShipUpgrade obj;
 
     public ShipUpgrade() {
     }
 
-    public String getDescription() {
-        return description;
-    }
-
+    
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public double getTravelTime() {
-        return travelTime;
-    }
-
-    public void setTravelTime(double travelTime) {
-        this.travelTime = travelTime;
-    }
-
-    public boolean isBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(boolean b) {
-        
     }
 
     public void setUpgradeAvailable(boolean b) {
@@ -53,6 +33,49 @@ public class ShipUpgrade implements Serializable{
 
     public void setUpgradeType(String stronger_lasers) {
 
+    }
+    
+     @Override
+    public String toString() {
+        return "Upgrade{" + "description=" + description + ", upgradeAvailable=" + upgradeAvailable + ", upgradeType=" + upgradeType + '}';
+    }
+        
+    
+    @Override
+     public boolean equals(Object obj) {
+        
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ShipUpgrade other = (ShipUpgrade) obj;
+        if (this.upgradeAvailable != other.upgradeAvailable) {
+            return false;
+        }
+        if (this.upgradeType != other.upgradeType) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    public String getDescription() {
+        System.out.println("\n*** getDescription stub function called ***");
+        return null;
+        
+    }
+     
+     public String getUpgradeAvailable() {
+        System.out.println("\n*** getUpgradeAvailable stub function called ***");
+        return null;
     }
   }
 

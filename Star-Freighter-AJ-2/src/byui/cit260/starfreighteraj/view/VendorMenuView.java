@@ -5,6 +5,8 @@
  */
 package byui.cit260.starfreighteraj.view;
 
+import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.model.ShipUpgrade;
 import java.util.Scanner;
 
 /**
@@ -38,6 +40,7 @@ public class VendorMenuView extends View{
               + "\nO - Oxygen"
               + "\nF - Food"
               + "\nJ - Job Board"
+              + "\nS - Ship upgrades available"  
               + "\nQ - Leave Vendor"
               + "\n------------------------------------------------");
         
@@ -57,6 +60,9 @@ public class VendorMenuView extends View{
             case "J":
                 this.displayJobsBoard();
                 break;
+            case "S":
+                this.displayUpgradeView();
+                break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
@@ -64,6 +70,22 @@ public class VendorMenuView extends View{
         
         return false;
     
+    }
+    
+    private void displayUpgradeView() {
+        // get the sorted list of upgrade items for the current game
+        ShipUpgrade[] upgrade = GameControl.getSortedUpgradeList();
+        
+        System.out.println("\nList Upgrade Items");
+        System.out.println("Description" + "\t" +
+                           "Available");
+        
+        // for each inventory item
+        for (ShipUpgrade upgradeItem : upgrade) {
+            // DISPLAY the description, the required amount and amount in stock
+            System.out.println(upgradeItem.getDescription() + "\t    " +
+                               upgradeItem.getUpgradeAvailable());
+        }
     }
 
     private void buyOxygen() {

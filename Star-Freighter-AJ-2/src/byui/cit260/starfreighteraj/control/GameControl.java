@@ -14,6 +14,7 @@ import byui.cit260.starfreighteraj.model.Player;
 import byui.cit260.starfreighteraj.model.Scene;
 import byui.cit260.starfreighteraj.model.ShipModel;
 import star.freighter.aj.StarFreighterAJ;
+import byui.cit260.starfreighteraj.model.ShipUpgrade;
 
 /**
  *
@@ -154,6 +155,11 @@ public class GameControl {
     
     public static Location[][] getMapLocations() {
         System.out.println("\n*** getMapLocations stub function called *** ");
+        return null;
+    }
+    
+    public static ShipUpgrade[] getSortedUpgradeList() {
+        System.out.println("\n*** getSortedUpgradeList stub function called ***");
         return null;
     }
 }
