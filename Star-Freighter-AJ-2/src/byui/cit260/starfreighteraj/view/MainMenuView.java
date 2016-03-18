@@ -6,7 +6,10 @@
 package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import star.freighter.aj.StarFreighterAJ;
 
 
@@ -40,7 +43,13 @@ public class MainMenuView extends View {
         
         switch (value) {
             case "N":
+        {
+            try {
                 this.startNewGame();
+            } catch (MapControlException me) {
+               System.out.println(me.getMessage());
+            }
+        }
                 break;
             case "L":
                 this.startExistingGame();
@@ -70,7 +79,7 @@ public class MainMenuView extends View {
         return false;
     }
 
-    private void startNewGame() {
+    private void startNewGame() throws MapControlException {
         GameControl.createNewGame(StarFreighterAJ.getPlayer());
         
     }

@@ -105,4 +105,12 @@ public class Map implements Serializable{
         System.out.println("\n*** getMapLocations stub function called *** ");
         return null;
     } 
+
+    public int getNoOfRows() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getNoOfColumns() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

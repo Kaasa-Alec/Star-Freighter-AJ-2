@@ -6,6 +6,7 @@
 package byui.cit260.starfreighteraj.control;
 
 import byui.cit260.starfreighteraj.control.MapControl.SceneType;
+import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
@@ -36,7 +37,7 @@ public class GameControl {
         return player;
     }
 
-    public static void createNewGame(Player player) {
+    public static void createNewGame(Player player) throws MapControlException {
         Game game = new Game(); //create new game
         StarFreighterAJ.setCurrentGame(game); //save in StarFreighterAJ
         
