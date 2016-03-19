@@ -139,14 +139,14 @@ public class GameControl {
     }
 
         public enum Item {
-        crate(),
-        pylon(),
-        warpCells(),
-        shields(),
-        weapons(),
-        food(),
-        oxygen(),
-        product();
+        crate,
+        pylon,
+        warpCells,
+        shields,
+        weapons,
+        food,
+        oxygen,
+        product;
     }
         
     public static InventoryItem[] getSortedInventoryList() {
