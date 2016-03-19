@@ -6,8 +6,11 @@
 package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.exceptions.GameControlException;
 import byui.cit260.starfreighteraj.model.ShipModel;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,12 +49,13 @@ public class ShipNameView extends View {
         return false;
         }
         
-        ShipModel ship = GameControl.createShip(value);
-        
-        if (ship == null) {
-            System.out.println("\nError creating the player.");
-            return false;
+        try {
+            ShipModel ship = GameControl.createShip(value);
+        } catch (GameControlException me) {
+            System.out.println(me.getMessage());
         }
+        
+        
         
        this.displayNextView(ship);
     

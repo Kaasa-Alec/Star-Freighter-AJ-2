@@ -6,6 +6,7 @@
 package byui.cit260.starfreighteraj.control;
 
 import byui.cit260.starfreighteraj.control.MapControl.SceneType;
+import byui.cit260.starfreighteraj.exceptions.GameControlException;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
@@ -23,17 +24,19 @@ import byui.cit260.starfreighteraj.model.ShipUpgrade;
  */
 public class GameControl {
 
-    public static Player createPlayer(String name) {
+    public static Player createPlayer(String name) 
+                                throws GameControlException {
         
         if (name == null) {
-            return null;
+            throw new GameControlException("Error creating the player "
+                                          + "Please try again.");
         }
         
         Player player = new Player();
         player.setName(name);
         
         StarFreighterAJ.setPlayer(player);
-        
+       
         return player;
     }
 
@@ -58,10 +61,12 @@ public class GameControl {
     }
         
 
-    public static ShipModel createShip(String name) {
+    public static ShipModel createShip(String name) 
+                                throws GameControlException {
         
         if (name == null) {
-            return null;
+            throw new GameControlException ("Error creating the ship "
+                                          + "Please try again.");
         }
         
         ShipModel ship = new ShipModel();
