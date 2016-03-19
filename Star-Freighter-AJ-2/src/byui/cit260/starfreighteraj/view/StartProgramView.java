@@ -1,8 +1,11 @@
 package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.exceptions.GameControlException;
 import byui.cit260.starfreighteraj.model.Player;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -52,12 +55,14 @@ public class StartProgramView extends View {
         return false;
         }
         
-        Player player = GameControl.createPlayer(value);
-        
-        if (player == null) {
-            System.out.println("\nError creating the player.");
-            return false;
+        Player player = null;
+        try {
+            player = GameControl.createPlayer(value);
+        } catch (GameControlException me) {
+            System.out.println(me.getMessage());
         }
+        
+        
         
         this.displayNextView(player);
     
