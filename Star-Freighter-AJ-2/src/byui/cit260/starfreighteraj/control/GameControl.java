@@ -7,6 +7,7 @@ package byui.cit260.starfreighteraj.control;
 
 import byui.cit260.starfreighteraj.control.MapControl.SceneType;
 import byui.cit260.starfreighteraj.exceptions.GameControlException;
+import byui.cit260.starfreighteraj.exceptions.InventoryControlException;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
@@ -61,8 +62,7 @@ public class GameControl {
     }
         
 
-    public static ShipModel createShip(String name) 
-                                throws GameControlException {
+    public static ShipModel createShip(String name) throws GameControlException {
         
         if (name == null) {
             throw new GameControlException ("Error creating the ship "
@@ -75,6 +75,20 @@ public class GameControl {
         StarFreighterAJ.setShip(ship);
         
         return ship;
+    }
+    
+    public static void createCrate(int crateVolume) throws InventoryControlException {
+        
+        if (crateVolume == -1) {
+            throw new InventoryControlException ("Error creating the crate"
+                    + "Please try again.");
+        }
+        
+        InventoryItem crate = new InventoryItem();
+        crate.setCrateVolume(crateVolume);
+        
+        StarFreighterAJ.setCrate(crate);
+        
     }
 
     public static InventoryItem[] createInventoryList() {

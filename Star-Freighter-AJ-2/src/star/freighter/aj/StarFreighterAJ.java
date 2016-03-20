@@ -6,6 +6,7 @@
 package star.freighter.aj;
 
 import byui.cit260.starfreighteraj.model.Game;
+import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Player;
 import byui.cit260.starfreighteraj.model.ShipModel;
 import byui.cit260.starfreighteraj.view.StartProgramView;
@@ -19,6 +20,7 @@ public class StarFreighterAJ {
     private static Game currentGame = null;
     private static Player player = null;
     private static ShipModel ship = null;
+    private static InventoryItem crate = null;
 
     /**
      * @param args the command line arguments
@@ -55,12 +57,8 @@ public class StarFreighterAJ {
     public static void setShip(ShipModel ship) {
         StarFreighterAJ.ship = ship;
     }
-    
-    
-    
-        
-        
-         
-    }
 
- 
+    public static void setCrate(InventoryItem crate) {
+        StarFreighterAJ.crate = crate;
+    }
+}

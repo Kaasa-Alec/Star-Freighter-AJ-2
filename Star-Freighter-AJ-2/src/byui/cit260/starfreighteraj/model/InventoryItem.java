@@ -17,6 +17,7 @@ public class InventoryItem implements Serializable{
     private String inventory;
     private int quantityInStock;
     private int requiredAmount;
+    private int crateVolume;
 
     public InventoryItem() {
     }
@@ -43,6 +44,14 @@ public class InventoryItem implements Serializable{
 
     public void setRequiredAmount(int requiredAmount) {
         this.requiredAmount = requiredAmount;
+    }
+    
+    public int getCrateVolume(){
+        return crateVolume;
+    }
+    
+    public void setCrateVolume(int crateVolume){
+        this.crateVolume = crateVolume;
     }
 
     @Override
