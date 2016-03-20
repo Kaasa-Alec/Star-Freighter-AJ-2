@@ -14,19 +14,58 @@ import java.util.Scanner;
 
 public class DesignCrateView extends View {
 
-    
     public DesignCrateView() {
-        super("\nPlease enter crate volume measurements:");
+        super("\n************************************************"
+            + "\n* Alright, sir, we've got to design the crates *"
+            + "\n* we'll be using to carry our goods, as well   *"
+            + "\n* as our own resources. No need to worry about *"
+            + "\n* the cost. The shipping company has already   *"
+            + "\n* paid for the shipping crates, but it's up to *"
+            + "\n* us to tell the staff how big we want them.   *"
+            + "\n* Enter 'OK' to go on.                         *"
+            + "\n************************************************");
     }
         
     @Override
     public boolean doAction(String value) {
         
-        if (value.length() < 3 ) {
-            System.out.println("\nInvalid value:"
-                    + "Volume must be more than two characters");
+        System.out.print("Please enter crate length: "); 
+        Scanner keyboard = new Scanner(System.in);
+        String input = keyboard.nextLine();
+        int length = Integer.parseInt(input);
+        
+        if (length < 5 || length > 20) {
+            System.out.println("\nInvalid crate length: The length cannot be less "
+                    + "than 5 or greater than 20 feet long");
         return false;
         }
+        
+        System.out.print("\nPlease enter crate height: ");
+        keyboard = new Scanner(System.in);
+        input = keyboard.nextLine();
+        int height = Integer.parseInt(input);
+        
+        if (height < 2 || height > 10) {
+            System.out.println("\nInvalid crate height: The height cannot be less "
+                    + "than 2 or greater than 10 feet high");
+        return false;
+        }
+        
+        System.out.print("\nPlease enter crate width: ");
+        keyboard = new Scanner(System.in);
+        input = keyboard.nextLine();
+        int width = Integer.parseInt(input);
+        
+        if (width < 2 || width > 8) {
+            System.out.println("\nInvalid crate width: The width cannot be less "
+                    + "than 2 or greater than 8 feet wide");
+        return false;
+        }
+ 
+        int volume = length * height * width;
+ 
+        System.out.println("Volume: " + volume);
+        
         this.displayNextCrateView(crate);
         
         return true;

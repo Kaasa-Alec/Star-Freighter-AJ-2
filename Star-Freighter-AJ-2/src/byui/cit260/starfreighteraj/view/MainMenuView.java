@@ -33,6 +33,7 @@ public class MainMenuView extends View {
             + "\nS - Save game"
             + "\nQ - Quit game"
             + "\nT - TEST - ShipNameView"
+            + "\nZ - TEST - DesignCrateView"   
             + "\n--------------------------------------------");
     }
     
@@ -70,6 +71,9 @@ public class MainMenuView extends View {
                 // the bit above in the displayMainMenu function, but maybe we should include it to be safe from now on.
             case "T": //TEMPORARY FOR TESTING
                 this.displayShipNameView();
+                break;
+            case "Z":
+                this.displayDesignCrateView();
                 break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -110,6 +114,12 @@ public class MainMenuView extends View {
         ShipNameView shipNameView = new ShipNameView();
         
         shipNameView.display();
+    }
+
+    private void displayDesignCrateView() {
+        DesignCrateView designCrateView = new DesignCrateView();
+        
+        designCrateView.display();
     }
 
 }

@@ -5,6 +5,8 @@
  */
 package byui.cit260.starfreighteraj.control;
 
+import java.util.Scanner;
+
 /**
  *
  * @author AlecSir
@@ -13,11 +15,11 @@ public class InventoryControl {
     
     public double calcVolumeOfCrate (double height, double width, double length) {
     
-	if (height < 0) { // height is negative?
+	if (height < 2 || height > 10) { // height is negative?
             return -1;
         }
 
-	if (width < 0 || width > 8) { // width out of range?
+	if (width < 2 || width > 8) { // width out of range?
             return -1;
         }
 
