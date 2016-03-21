@@ -93,9 +93,7 @@ public class DesignCrateView extends View {
         
         
         
-        // THIS IS A PROBLEM, BUT I DON'T KNOW ENOUGH ABOUT TRY AND CATCH STATEMENTS
-        // TO FIX IT, AND THE PDF EXAMPLE IS COMPLETELY USELESS.  PLEASE HELP.
-        
+                
         int volume = length * height * width;        
         
         System.out.println("Volume: " + volume);
