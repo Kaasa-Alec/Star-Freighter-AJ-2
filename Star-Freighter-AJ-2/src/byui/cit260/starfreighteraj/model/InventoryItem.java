@@ -14,20 +14,21 @@ import java.util.Objects;
  */
 public class InventoryItem implements Serializable{
 
-    private String inventory;
+    private String inventoryType;
     private int quantityInStock;
     private int requiredAmount;
     private int crateVolume;
+    private String description;
 
     public InventoryItem() {
     }
     
     public String getInventoryType() {
-        return inventory;
+        return inventoryType;
     }
 
-    public void setInventoryType(String inventory) {
-        this.inventory = inventory;
+    public void setInventoryType(String inventoryType) {
+        this.inventoryType = inventoryType;
     }
 
     public int getQuantityInStock() {
@@ -57,7 +58,7 @@ public class InventoryItem implements Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.inventory);
+        hash = 31 * hash + Objects.hashCode(this.inventoryType);
         hash = 31 * hash + this.quantityInStock;
         hash = 31 * hash + this.requiredAmount;
         return hash;
@@ -65,7 +66,7 @@ public class InventoryItem implements Serializable{
 
     @Override
     public String toString() {
-        return "Inventory{" + "inventoryItem=" + inventory + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + '}';
+        return "Inventory{" + "inventoryItem=" + inventoryType + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + '}';
     }
     
     @Override
@@ -86,17 +87,17 @@ public class InventoryItem implements Serializable{
         if (this.requiredAmount != other.requiredAmount) {
             return false;
         }
-        if (!Objects.equals(this.inventory, other.inventory)) {
+        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
             return false;
         }
         return true;
     }
 
-    public void setDescription(String crates) {
+    public String getDescription() {
+        return description;
     }
 
-    public String getDescription() {
-        System.out.println("\n*** getDescription stub function called ***");
-        return null;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

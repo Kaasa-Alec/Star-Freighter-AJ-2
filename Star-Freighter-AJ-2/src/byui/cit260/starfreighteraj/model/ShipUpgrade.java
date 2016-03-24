@@ -15,16 +15,14 @@ import java.util.Objects;
 public class ShipUpgrade implements Serializable{
     
     private String description;
-    private double travelTime;
+    private int travelTime;
     private boolean blocked;
     private boolean upgradeAvailable;
     private String upgradeType;
-    private ShipUpgrade obj;
 
     public ShipUpgrade() {
     }
 
-    
     public void setDescription(String description) {
         this.description = description;
     }
@@ -33,11 +31,11 @@ public class ShipUpgrade implements Serializable{
         return travelTime;
     }
 
-    public void setUpgradeAvailable(boolean b) {
-
+    public void setUpgradeAvailable(boolean blocked) {
+        this.blocked = blocked;
     }
 
-    public void setTravelTime(double travelTime) {
+    public void setTravelTime(int travelTime) {
         this.travelTime = travelTime;
     }
     
@@ -45,8 +43,8 @@ public class ShipUpgrade implements Serializable{
         return blocked;
     }
     
-    public void setUpgradeType(String stronger_lasers) {
-
+    public void setUpgradeType(String upgradeType) {
+        this.upgradeType = upgradeType;
     }
     
     public void setBlocked(boolean b) {
@@ -86,20 +84,14 @@ public class ShipUpgrade implements Serializable{
 
 
     public String getDescription() {
-        System.out.println("\n*** getDescription stub function called ***");
-        return null;
-        
+        return description;
     }
      
-     public String getUpgradeAvailable() {
-        System.out.println("\n*** getUpgradeAvailable stub function called ***");
-        return null;
+     public boolean getUpgradeAvailable() {
+        return upgradeAvailable;
     }
 
     public String getUpgradeType() {
-        System.out.println("\n*** getUpgradeType stub function called ***");
-        return null;
+        return upgradeType;
     }
-  }
-
-
+}

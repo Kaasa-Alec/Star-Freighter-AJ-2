@@ -157,7 +157,7 @@ public class GameControl {
         
     }
 
-        public enum Item {
+    public enum Item {
         crate,
         pylon,
         warpCells,
