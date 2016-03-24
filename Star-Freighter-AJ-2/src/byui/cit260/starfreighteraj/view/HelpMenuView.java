@@ -48,7 +48,7 @@ public class HelpMenuView extends View {
                 this.displayUpgradeScreen();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 valid = false; // HERE WAS THE PROBLEM, WATCH OUT IN FUTURE
                 break;
         }
@@ -57,7 +57,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayInfoScreen() {
-        System.out.println("\n-------------------------------------------------"
+        this.console.println("\n-------------------------------------------------"
                          + "\n| Information about your goal"
                          + "\n-------------------------------------------------"
                          + "\nOptimize your ship!  Among other things, you'll"
@@ -71,7 +71,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayMoveScreen() {
-        System.out.println("\n-------------------------------------------------"
+        this.console.println("\n-------------------------------------------------"
                          + "\n| How to get around"
                          + "\n-------------------------------------------------"
                          + "\nEvery place you go has a set of destinations, "
@@ -83,7 +83,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayCollectScreen() {
-        System.out.println("\n-------------------------------------------------"
+        this.console.println("\n-------------------------------------------------"
                          + "\n| Collecting resources"
                          + "\n-------------------------------------------------"
                          + "\nAll over the space station, people have things "
@@ -102,7 +102,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayDetailScreen() {
-        System.out.println("\n-------------------------------------------------"
+        this.console.println("\n-------------------------------------------------"
                          + "\n| Ship Details"
                          + "\n-------------------------------------------------"
                          + "\nThis displays the current stats of your ship, "
@@ -114,7 +114,7 @@ public class HelpMenuView extends View {
     }
 
     private void displayUpgradeScreen() {
-        System.out.println("\n-------------------------------------------------"
+        this.console.println("\n-------------------------------------------------"
                          + "\n| Shop, upgrades, and repairs"
                          + "\n-------------------------------------------------"
                          + "\nYou buy a few of your items at the shop, namely"
@@ -126,11 +126,5 @@ public class HelpMenuView extends View {
                          + "\ncommand for them. But don't worry, because any components will"
                          + "\nbe automatically applied to your ship at no cost! Lucky, right?"
                          + "\n-------------------------------------------------");
-    }
-
-    private void displayMainMenuView() {
-        MainMenuView mainMenuView = new MainMenuView();
-        
-        mainMenuView.display();
     }
 }

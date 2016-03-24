@@ -47,8 +47,9 @@ public class MainMenuView extends View {
         
                 try {
                     this.startNewGame();
-                } catch (MapControlException me) {
-                    System.out.println(me.getMessage());
+                } catch (Exception e) {
+                    ErrorView.display(this.getClass().getName(), "Error reading input: "
+                    + e.getMessage());
                 }
         
                 break;
@@ -76,7 +77,7 @@ public class MainMenuView extends View {
                 this.displayDesignCrateView();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 break;
         }
         
@@ -89,7 +90,7 @@ public class MainMenuView extends View {
     }
 
     private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
+        this.console.println("*** startExistingGame function called ***");
 
     }
     
@@ -106,7 +107,7 @@ public class MainMenuView extends View {
         helpMenuView.display();
     }
     private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+        this.console.println("*** saveGame function called ***");
     }
 
     //TEMPORARY FOR TESTING

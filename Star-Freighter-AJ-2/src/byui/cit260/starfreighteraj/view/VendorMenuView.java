@@ -65,7 +65,7 @@ public class VendorMenuView extends View{
                 this.displayUpgradeView();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 break;
         }
         
@@ -77,26 +77,26 @@ public class VendorMenuView extends View{
         // get the sorted list of upgrade items for the current game
         ShipUpgrade[] upgrade = GameControl.getSortedUpgradeList();
         
-        System.out.println("\nList Upgrade Items");
-        System.out.println("Description" + "\t" +
+        this.console.println("\nList Upgrade Items");
+        this.console.println("Description" + "\t" +
                            "Available" + "\t" +
                             "Type");
         
         // for each inventory item
         for (ShipUpgrade shipUpgrade : upgrade) {
             // DISPLAY the description, the required amount and amount in stock
-            System.out.println(shipUpgrade.getDescription() + "\t    " +
+            this.console.println(shipUpgrade.getDescription() + "\t    " +
                                shipUpgrade.getUpgradeAvailable() + "\t    " +
                                shipUpgrade.getUpgradeType());
         }
     }
 
     private void buyOxygen() {
-        System.out.println("*** buyOxygen function called ***");
+        this.console.println("*** buyOxygen function called ***");
     }
 
     private void buyFood() {
-        System.out.println("*** buyFood function called ***");
+        this.console.println("*** buyFood function called ***");
     }
 
     private void displayJobsBoard() {

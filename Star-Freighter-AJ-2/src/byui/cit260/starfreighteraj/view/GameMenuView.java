@@ -55,7 +55,7 @@ public class GameMenuView extends View {
                 this.displayDesignCrateView();
                 break;    
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 valid = false; // HERE WAS THE PROBLEM, WATCH OUT IN FUTURE
                 break;
         }
@@ -67,15 +67,15 @@ public class GameMenuView extends View {
         // get the sorted list of inventory items for the current game
         InventoryItem[] inventory = GameControl.getSortedInventoryList();
         
-        System.out.println("\nList of Inventory Items");
-        System.out.println("Description" + "\t" +
+        this.console.println("\nList of Inventory Items");
+        this.console.println("Description" + "\t" +
                            "Required" + "\t" + 
                            "In Stock");
         
         // for each inventory item
         for (InventoryItem inventoryItem : inventory) {
             // DISPLAY the description, the required amount and amount in stock
-            System.out.println(inventoryItem.getDescription() + "\t    " +
+            this.console.println(inventoryItem.getDescription() + "\t    " +
                                inventoryItem.getRequiredAmount() + "\t    " +
                                inventoryItem.getQuantityInStock());
         }
@@ -86,40 +86,40 @@ public class GameMenuView extends View {
         // get the map locations from the current game
         Location[][] locations = GameControl.getMapLocations();
         //DISPLAY title
-        System.out.println("\nView Map");
+        this.console.println("\nView Map");
         //DISPLAY row of column numbers
-        System.out.println("1" + "\t" + "2" + "\t" + "3" + "\t" + "4");
+        this.console.println("1" + "\t" + "2" + "\t" + "3" + "\t" + "4");
         
         //FOR every row in map
         for (int row = 0; row < noOfRows; row++) {
             //DISPLAY row divider
-            System.out.println("\n**********************************************");
+            this.console.println("\n**********************************************");
             //DISPLAY row number
-            System.out.println(row);
+            this.console.println(row);
             //FOR every column in row
             for (int column = 0; column < noOfColumns; column++) {
                 //DISPLAY column divider
-                System.out.println("\n | ");
+                this.console.println("\n | ");
                 //location = locations[row][column]
                 locations[0][0] = location;
                 //IF location has been visited
                 if (locations[row][column].getVisited && locations[row][column].getVisited == false){
                     // DISPLAY the map symbol for location
-                    System.out.println(" ~~~~ ");
+                    this.console.println(" ~~~~ ");
                 //ENDIF
                 }
                 //ELSE
                 else {
                     //DISPLAY " ?? "
-                    System.out.println(" ?? ");
+                    this.console.println(" ?? ");
                     //ENDELSE
                         }
                 //DISPLAY ending column divider
-                System.out.println("\n | ");
+                this.console.println("\n | ");
             //ENDFOR
             }
             //DISPLAY ending row divider
-            System.out.println("\n**********************************************");
+            this.console.println("\n**********************************************");
         //END
         }
     }

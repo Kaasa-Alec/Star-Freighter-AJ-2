@@ -66,7 +66,7 @@ public class JobBoardView extends View {
                 this.displayJobF();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 valid = false;
                 break;
     }
@@ -74,26 +74,26 @@ public class JobBoardView extends View {
 }
 
     private void displayJobA() {
-        System.out.println("*** displayJobA function called ***");
+        this.console.println("*** displayJobA function called ***");
     }
 
     private void displayJobB() {
-        System.out.println("*** displayJobB function called ***");
+        this.console.println("*** displayJobB function called ***");
     }
 
     private void displayJobC() {
-        System.out.println("*** displayJobC function called ***");
+        this.console.println("*** displayJobC function called ***");
     }
 
     private void displayJobD() {
-        System.out.println("*** displayJobD function called ***");
+        this.console.println("*** displayJobD function called ***");
     }
 
     private void displayJobE() {
-        System.out.println("*** displayJobE function called ***");
+        this.console.println("*** displayJobE function called ***");
     }
 
     private void displayJobF() {
-        System.out.println("*** displayJobF function called ***");
+        this.console.println("*** displayJobF function called ***");
     }
 }

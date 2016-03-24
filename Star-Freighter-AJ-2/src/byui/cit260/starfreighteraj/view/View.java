@@ -5,7 +5,13 @@
  */
 package byui.cit260.starfreighteraj.view;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import star.freighter.aj.StarFreighterAJ;
 
 /**
  *
@@ -14,6 +20,9 @@ import java.util.Scanner;
 public abstract class View implements ViewInterface {
     
     protected String displayMessage;
+    
+    protected final BufferedReader keyboard = StarFreighterAJ.getInFile();
+    protected final PrintWriter console = StarFreighterAJ.getOutFile();
     
     public View() {
         
@@ -43,26 +52,31 @@ public abstract class View implements ViewInterface {
     @Override
     public String getInput() {
         
-        Scanner keyboard = new Scanner(System.in);
+        
         boolean valid = false;
         String value = null;
         
         // while a valid name has not been retrieved
         while (!valid) {
             
-            // prompt for the player's name
-            System.out.println("\n" + this.displayMessage);
-            
-            // get the value entered from the keyboard
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) { // blank value entered
-                System.out.println("\n*** You must enter a value *** ");
-                continue;
+            try {
+                // prompt for the player's name
+                this.console.println("\n" + this.displayMessage);
+                
+                // get the value entered from the keyboard
+                value = keyboard.readLine();
+                value = value.trim();
+                
+                if (value.length() < 1) { // blank value entered
+                    ErrorView.display(this.getClass().getName(),
+                                      "You must enter a value.");
+                    continue;
+                }
+                
+                break;
+            } catch (IOException ex) {
+                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            break;
         }
         
         return value; // return the name

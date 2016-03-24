@@ -43,21 +43,19 @@ public class ShipNameView extends View {
     @Override
     public boolean doAction(String value) {
         
-        if (value.length() < 2) {
-            System.out.println("\nInvalid ship name: The name must be greater "
-                    + "than one character in length");
-        return false;
-        }
-                
         try {
+            
+            if (value.length() < 2) {
+            ErrorView.display(this.getClass().getName(), "\nInvalid ship name: The name must be greater "
+                    + "than one character in length");
+            return false;
+            }
             ship = GameControl.createShip(value);
-        } catch (GameControlException me) {
-            System.out.println(me.getMessage());
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
         }
         
-        
-        
-       this.displayNextView(ship);
+        this.displayNextView(ship);
     
         return true;
         
@@ -66,7 +64,7 @@ public class ShipNameView extends View {
     private void displayNextView(ShipModel ship) {
         
         if (ship.getName().toUpperCase().equals("ENTERPRISE")) {
-            System.out.println(
+            this.console.println(
                          "\n************************************************"
                        + "\n*                                              *"
                        + "\n* 'Enterprise,' huh? How original. Did you     *"
@@ -88,7 +86,7 @@ public class ShipNameView extends View {
                        );
         }
         else {
-            System.out.println(
+            this.console.println(
                          "\n************************************************"
                        + "\n                                                "
                        + "\n Wow, '" + ship.getName() + "' is an awesome    "
