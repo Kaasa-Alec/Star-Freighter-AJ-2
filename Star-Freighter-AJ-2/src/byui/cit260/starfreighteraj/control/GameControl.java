@@ -18,6 +18,10 @@ import byui.cit260.starfreighteraj.model.Scene;
 import byui.cit260.starfreighteraj.model.ShipModel;
 import star.freighter.aj.StarFreighterAJ;
 import byui.cit260.starfreighteraj.model.ShipUpgrade;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -182,4 +186,34 @@ public class GameControl {
         System.out.println("\n*** getSortedUpgradeList stub function called ***");
         return null;
     }
+    
+    public static void saveGame(Game currentGame, String filePath) throws GameControlException {
+        
+        try (FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(currentGame); // write the game object out to file
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+    
+    public static void getSavedGame(String filePath) throws GameControlException {
+        Game game = null;
+        
+        try (FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject(); // read the game object from file
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+        // close the output file
+        StarFreighterAJ.setCurrentGame(game); // save in StarFreighterAJ
+    }
+    
+    
 }
