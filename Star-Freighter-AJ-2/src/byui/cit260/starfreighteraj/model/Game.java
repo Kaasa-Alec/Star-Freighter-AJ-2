@@ -107,12 +107,6 @@ public class Game implements Serializable  {
     @Override
     public String toString() {
         return "Game{" + "totalTime=" + totalTime + ", numberOfPlayers=" + numberOfPlayers + '}';
-    }
-
-    public Map getmap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+    }    
     
 }

@@ -14,12 +14,12 @@ import java.io.Serializable;
 public class Map implements Serializable{
     
     //class instance variables
-    private double rowCount;
-    private double columnCount;
+    private int rowCount;
+    private int columnCount;
     private Location[][] locations;
     private int noOfRows;
     private int noOfColumns;
-    private double column;
+    private int column;
 
     public Map() {
     }
@@ -51,19 +51,19 @@ public class Map implements Serializable{
         }
     }
 
-    public double getRowCount() {
+    public int getRowCount() {
         return rowCount;
     }
 
-    public void setRowCount(double rowCount) {
+    public void setRowCount(int rowCount) {
         this.rowCount = rowCount;
     }
 
-    public double getColumnCount() {
+    public int getColumnCount() {
         return columnCount;
     }
 
-    public void setColumnCount(double columnCount) {
+    public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
     }
 
@@ -103,14 +103,14 @@ public class Map implements Serializable{
 
     public Location[][] getLocations() {
         System.out.println("\n*** getMapLocations stub function called *** ");
-        return null;
+        return locations;
     } 
 
     public int getNoOfRows() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return noOfRows;
     }
 
     public int getNoOfColumns() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return noOfColumns;
     }
 }

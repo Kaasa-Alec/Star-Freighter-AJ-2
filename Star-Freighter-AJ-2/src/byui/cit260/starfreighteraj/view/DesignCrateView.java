@@ -36,9 +36,9 @@ public class DesignCrateView extends View {
         System.out.print("Please enter crate length: "); 
         Scanner keyboard = new Scanner(System.in);
         String input = keyboard.nextLine();
+        int length = Integer.parseInt(input);
         
-        try{
-            int length = Integer.parseInt(input);
+        try {
             
             if (length < 5 || length > 20) {
             System.out.println("\nInvalid crate length: The length cannot be less "
@@ -48,17 +48,15 @@ public class DesignCrateView extends View {
             System.out.println("\nYou must enter a valid number."
                     + " Try again.");
         }
-        
-        
-        
-        
+       
         
         System.out.print("\nPlease enter crate height: ");
         keyboard = new Scanner(System.in);
         input = keyboard.nextLine();
         
+        int height = Integer.parseInt(input);
+        
         try {
-            int height = Integer.parseInt(input);
             
             if (height < 2 || height > 10) {
             System.out.println("\nInvalid crate height: The height cannot be less "
@@ -77,8 +75,9 @@ public class DesignCrateView extends View {
         keyboard = new Scanner(System.in);
         input = keyboard.nextLine();
         
+        int width = Integer.parseInt(input);
+        
         try {
-            int width = Integer.parseInt(input);
             
             if (width < 2 || width > 8) {
             System.out.println("\nInvalid crate width: The width cannot be less "
@@ -94,7 +93,7 @@ public class DesignCrateView extends View {
         
         
                 
-        int volume = length * height * width;        
+        int volume = (length * height * width);        
         
         System.out.println("Volume: " + volume);
         

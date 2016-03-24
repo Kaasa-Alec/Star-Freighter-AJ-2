@@ -35,7 +35,7 @@ public class MapControl {
     public static void moveActorToLocation (Actor actor, Point coordinates) 
                             throws MapControlException {
         
-        Map map = StarFreighterAJ.getCurrentGame().getmap();
+        Map map = StarFreighterAJ.getCurrentGame().getMap();
         int newRow = coordinates.x-1;
         int newColumn = coordinates.y-1;
         

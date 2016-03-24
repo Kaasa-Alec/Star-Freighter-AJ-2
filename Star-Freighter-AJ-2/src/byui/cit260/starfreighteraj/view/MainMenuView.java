@@ -44,13 +44,13 @@ public class MainMenuView extends View {
         
         switch (value) {
             case "N":
-        {
-            try {
-                this.startNewGame();
-            } catch (MapControlException me) {
-               System.out.println(me.getMessage());
-            }
-        }
+        
+                try {
+                    this.startNewGame();
+                } catch (MapControlException me) {
+                    System.out.println(me.getMessage());
+                }
+        
                 break;
             case "L":
                 this.startExistingGame();
@@ -119,7 +119,7 @@ public class MainMenuView extends View {
     private void displayDesignCrateView() {
         DesignCrateView designCrateView = new DesignCrateView();
         
-        designCrateView.display();
+        boolean bob = designCrateView.doAction("ok");
     }
 
 }

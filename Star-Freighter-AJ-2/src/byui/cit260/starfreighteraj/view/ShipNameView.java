@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author AlecSir
  */
 public class ShipNameView extends View {
-    private ShipModel ship;
+    public ShipModel ship;
     
     public ShipNameView() {
         
@@ -36,7 +36,7 @@ public class ShipNameView extends View {
                 + "\n* fleet an awesome name!                       *"
                 + "\n*                                              *"
                 + "\n************************************************"
-                + "\n                                               *"
+                + "\n                                                "
                 + "\nPlease enter the name of your ship:");
     }
     
@@ -48,9 +48,9 @@ public class ShipNameView extends View {
                     + "than one character in length");
         return false;
         }
-        
+                
         try {
-            ShipModel ship = GameControl.createShip(value);
+            ship = GameControl.createShip(value);
         } catch (GameControlException me) {
             System.out.println(me.getMessage());
         }
