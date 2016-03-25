@@ -105,8 +105,6 @@ public class ShipNameView extends View {
                        );
         }
         
-        MainMenuView mainMenuView = new MainMenuView();
-        
-        mainMenuView.display();
+        return;
     }
 }

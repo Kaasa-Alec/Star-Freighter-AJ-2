@@ -114,9 +114,7 @@ public class DesignCrateView extends View {
                          + "\n************************************************"
                           );
         
-        MainMenuView mainMenuView = new MainMenuView();
-        
-        mainMenuView.display();
+        return;
     }
 } 
 

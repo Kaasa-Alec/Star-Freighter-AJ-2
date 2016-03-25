@@ -187,7 +187,8 @@ public class GameControl {
         return null;
     }
     
-    public static void saveGame(Game currentGame, String filePath) throws GameControlException {
+    public static void saveGame(Game currentGame, String filePath) 
+            throws GameControlException {
         
         try (FileOutputStream fops = new FileOutputStream(filePath)) {
             ObjectOutputStream output = new ObjectOutputStream(fops);
@@ -199,7 +200,8 @@ public class GameControl {
         }
     }
     
-    public static void getSavedGame(String filePath) throws GameControlException {
+    public static void getSavedGame(String filePath) 
+            throws GameControlException {
         Game game = null;
         
         try (FileInputStream fips = new FileInputStream(filePath)) {

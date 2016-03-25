@@ -7,6 +7,7 @@ package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,11 +66,6 @@ public class MainMenuView extends View {
             case "S":
                 this.saveGame();
                 break;
-// There was no Q - "Quit game" set up in your MainMenuView so it was passing to the default, which is why
-// it was returning to the HelpMenuView.  This also will allow the game to break from this menu.
-            case "Q":
-                break; //I dunno if this was the real problem, because there's 
-                // the bit above in the displayMainMenu function, but maybe we should include it to be safe from now on.
             case "T": //TEMPORARY FOR TESTING
                 this.displayShipNameView();
                 break;
@@ -91,21 +87,26 @@ public class MainMenuView extends View {
 
     private void startExistingGame() {
         
-        // prompt for and get the name of the file to save the game in
-        this.console.println("\n\nEnter the file path for where the game was saved");
-        
-        String filePath = this.getInput();
-        
         try {
-            // start a saved game
-            GameControl.getSavedGame(filePath);
-        } catch (Exception ex) {
-            ErrorView.display("MainMenuView", ex.getMessage());
+            
+            // prompt for and get the name of the file to save the game in
+            this.console.println("\n\nEnter the file path for where the game was saved");
+            
+            String filePath = keyboard.readLine();
+            
+            try {
+                // start a saved game
+                GameControl.getSavedGame(filePath);
+            } catch (Exception ex) {
+                ErrorView.display("MainMenuView", ex.getMessage());
+            }
+            
+            // display the game menu
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.display();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        // display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.display();
     }
     
     private void displayGameMenu() {
@@ -121,15 +122,20 @@ public class MainMenuView extends View {
         helpMenuView.display();
     }
     private void saveGame() {
-        this.console.println("\n\nEnter the file path for where the game is to "
-                + "be saved.");
-        String filePath = this.getInput();
-        
         try {
-            // save the game to the specified file path
-            GameControl.saveGame(StarFreighterAJ.getCurrentGame(), filePath);
-        } catch (Exception ex) {
-            ErrorView.display("MainMenuView", ex.getMessage());
+            // prompt for and get the name of the file to save the game in
+            this.console.println("\n\nEnter the file path for where the game is to "
+                    + "be saved.");
+            String filePath = keyboard.readLine();
+            
+            try {
+                // save the game to the specified file path
+                GameControl.saveGame(StarFreighterAJ.getCurrentGame(), filePath);
+            } catch (Exception ex) {
+                ErrorView.display("MainMenuView", ex.getMessage());
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
