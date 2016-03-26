@@ -6,6 +6,7 @@
 package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.model.Actor;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
@@ -42,6 +43,7 @@ public class GameMenuView extends View {
               + "\nQ - Back to Main Menu"
               + "\nT - TEST SortedInventoryList (YOU HAVE TO CREATE THE INVENTORY BY STARTING A NEW GAME FIRST)" 
               + "\nR - TEST - PrintReport"
+              + "\nA - TEST - PrintActorReport"
               + "\n--------------------------------------------");
     }
         
@@ -71,6 +73,16 @@ public class GameMenuView extends View {
         {
             try {
                 this.reportFilePath();
+            } catch (IOException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
+                
+            case "A":
+        {
+            try {
+                this.actorReportFilePath();
             } catch (IOException ex) {
                 Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -242,6 +254,56 @@ public class GameMenuView extends View {
                 outFile.write(item.getDescription() + "\t");
                 outFile.write(item.getRequiredAmount() + "\t");
                 outFile.write(item.getQuantityInStock() + "\t\n");
+            } 
+		} catch (IOException ex) {
+			this.console.println("Error printing report to file");
+		} finally {
+			if (outFile != null) { // if the file was successfully created
+				outFile.close(); // close the file stream
+				
+				/* Display a success message to the console if the report was printed
+				successfully to the specified file path. */
+				this.console.println("Success!");
+			}
+		}
+	}
+    
+    private void actorReportFilePath() throws IOException {
+	
+        // a.  Prompt the user for a file path of where the report is to be printed.
+	this.console.println("\n\nEnter the file path for where the actor report is to be printed.");
+		
+	// b.  Get the file path entered by the end user.
+	String filePath = keyboard.readLine();
+
+	/* c.  Call another View Layer function that actually prints the report.  Maybe do 
+	quotation marks around filePath */
+	this.printActorReport(filePath);
+		
+    }
+
+    private void printActorReport(String filePath) throws IOException {
+	
+	FileWriter outFile = null; // define a variable for a file stream
+		
+	try {
+            // create and open new file stream for the output file
+            outFile = new FileWriter(filePath);
+            
+            Game game = StarFreighterAJ.getCurrentGame();
+            Actor[] actor  = game.getActors();
+			
+            // The report must include a title and column headings
+            outFile.write("\n         LIST OF ACTORS");
+            outFile.write("\nDESCRIPTION \t");
+            outFile.write("LOCATION \t");
+            
+        
+            /* use a for statement to go through the list of items to be displayed, having
+            at least two columns of data for each item in the list. */
+            for (Actor actor : actors) {
+                outFile.write(actor.getDescription() + "\t");
+                outFile.write(actor.getCoordinates() + "\t");
             } 
 		} catch (IOException ex) {
 			this.console.println("Error printing report to file");
