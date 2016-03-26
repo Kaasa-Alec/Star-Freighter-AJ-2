@@ -7,9 +7,12 @@ package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.control.ShopControl;
+import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
 import byui.cit260.starfreighteraj.model.Map;
+import static java.lang.Integer.sum;
+import java.util.Collections;
 import java.util.Scanner;
 import star.freighter.aj.StarFreighterAJ;
 
@@ -22,6 +25,7 @@ public class GameMenuView extends View {
     private Location location;
     private int noOfRows;
     private int noOfColumns;
+    private int requiredAmount;
     
     
     public GameMenuView() {
@@ -29,31 +33,36 @@ public class GameMenuView extends View {
               + "\n-------------------------------------------"
               + "\n| Game Menu                               |"
               + "\n-------------------------------------------"
-              + "\nI - Inventory"
-              + "\nL - Location chooser"
+              + "\nI - Display Inventory (YOU HAVE TO CREATE THE INVENTORY BY STARTING A NEW GAME FIRST)"
+              + "\nM - Display Map"
               + "\nV - Vendor menu"
               + "\nD - Design Crate" 
               + "\nQ - Back to Main Menu"
+              + "\nT - TEST SortedInventoryList (YOU HAVE TO CREATE THE INVENTORY BY STARTING A NEW GAME FIRST)" 
               + "\n--------------------------------------------");
     }
         
+    @Override
         public boolean doAction(String value) {
         
         value = value.toUpperCase();
         boolean valid = true;
         switch (value) {
             case "I":
-                this.displayInventoryView();
+                this.displayInventory();
                 break;
-            case "L":
-                this.displayMapView();
+            case "M":
+                this.displayMap();
                 break;
             case "V":
                 this.displayVendorMenu();
                 break;
             case "D":
                 this.displayDesignCrateView();
-                break;    
+                break;
+            case "T":
+                this.displaySortedInventoryList();
+                break;
             default:
                 ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                 valid = false; // HERE WAS THE PROBLEM, WATCH OUT IN FUTURE
@@ -63,25 +72,36 @@ public class GameMenuView extends View {
         return false;
     }
         
-    private void displayInventoryView() {
-        // get the sorted list of inventory items for the current game
-        InventoryItem[] inventory = GameControl.getSortedInventoryList();
+    private void displayInventory() {
+        try {
         
-        this.console.println("\nList of Inventory Items");
-        this.console.println("Description" + "\t" +
-                           "Required" + "\t" + 
-                           "In Stock");
+            StringBuilder line;
         
-        // for each inventory item
-        for (InventoryItem inventoryItem : inventory) {
-            // DISPLAY the description, the required amount and amount in stock
-            this.console.println(inventoryItem.getDescription() + "\t    " +
-                               inventoryItem.getRequiredAmount() + "\t    " +
-                               inventoryItem.getQuantityInStock());
+            Game game = StarFreighterAJ.getCurrentGame();
+            InventoryItem[] inventory = game.getInventory();
+        
+            this.console.println("\n         LIST OF INVENTORY ITEMS");
+            line = new StringBuilder("                                   ");
+            line.insert(0, "DESCRIPTION");
+            line.insert(20, "REQUIRED");
+            line.insert(30, "IN STOCK");
+            this.console.println(line.toString());
+        
+            for (InventoryItem item : inventory) {
+                line = new StringBuilder("                                  ");
+                line.insert(0, item.getDescription());
+                line.insert(23, item.getRequiredAmount());
+                line.insert(33, item.getQuantityInStock());
+            
+                // DISPLAY the line
+                this.console.println(line.toString());
+            } 
+        } catch (Exception ex) {
+                ErrorView.display("GameMenuView", ex.getMessage());
         }
     }
     
-    private void displayMapView() {
+    private void displayMap() {
         
         // get the map locations from the current game
         Location[][] locations = GameControl.getMapLocations();
@@ -132,5 +152,42 @@ public class GameMenuView extends View {
     private void displayDesignCrateView() {
         DesignCrateView designCrateView = new DesignCrateView();
         designCrateView.display();
+    }
+
+    private void displaySortedInventoryList() {
+        try {
+            
+            StringBuilder line;
+        
+            Game game = StarFreighterAJ.getCurrentGame();
+            InventoryItem[] inventory = game.getInventory();
+        
+            int sum = 0;
+        
+            this.console.println("\n         INVENTORY ITEM TOTALS");
+            line = new StringBuilder("                                   ");
+            line.insert(0, "DESCRIPTION");
+            line.insert(20, "REQUIRED");
+            line.insert(30, "IN STOCK");
+            this.console.println(line.toString());
+        
+            for (InventoryItem item : inventory) {
+                line = new StringBuilder("                                  ");
+                line.insert(0, item.getDescription());
+                line.insert(23, item.getRequiredAmount());
+                line.insert(33, item.getQuantityInStock());
+            
+                // Get the required amount
+                requiredAmount = item.getRequiredAmount();     
+                // DISPLAY the line
+                this.console.println(line.toString());
+                sum += requiredAmount;
+            }
+        
+            this.console.println("\nThe total required amount of items is " 
+                    + sum + ".");
+        } catch (Exception ex) {
+                ErrorView.display("GameMenuView", ex.getMessage());
+        }
     }
 }

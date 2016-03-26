@@ -144,7 +144,7 @@ public class GameControl {
         inventory [Item.oxygen.ordinal()] = oxygen;
         
         InventoryItem product = new InventoryItem();
-        product.setDescription("product");
+        product.setDescription("Product");
         product.setQuantityInStock(0);
         product.setRequiredAmount(0);
         inventory [Item.product.ordinal()] = product;
@@ -187,13 +187,13 @@ public class GameControl {
         return null;
     }
     
-    public static void saveGame(Game currentGame, String filePath) 
+    public static void saveGame(Game game, String filePath) 
             throws GameControlException {
         
         try (FileOutputStream fops = new FileOutputStream(filePath)) {
             ObjectOutputStream output = new ObjectOutputStream(fops);
             
-            output.writeObject(currentGame); // write the game object out to file
+            output.writeObject(game); // write the game object out to file
         }
         catch(Exception e) {
             throw new GameControlException(e.getMessage());

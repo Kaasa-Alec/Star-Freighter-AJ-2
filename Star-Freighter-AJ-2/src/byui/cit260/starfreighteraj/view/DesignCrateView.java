@@ -21,15 +21,7 @@ import java.util.logging.Logger;
 public class DesignCrateView extends View {
 
     public DesignCrateView() {
-        super("\n************************************************"
-            + "\n* Alright, sir, we've got to design the crates *"
-            + "\n* we'll be using to carry our goods, as well   *"
-            + "\n* as our own resources. No need to worry about *"
-            + "\n* the cost. The shipping company has already   *"
-            + "\n* paid for the shipping crates, but it's up to *"
-            + "\n* us to tell the staff how big we want them.   *"
-            + "\n* Enter 'OK' to go on.                         *"
-            + "\n************************************************");
+    
     }
         
     @Override
@@ -37,7 +29,17 @@ public class DesignCrateView extends View {
          
         try {
             
-            this.console.println("Please enter crate length: ");
+            this.console.println("\n************************************************"
+            + "\n* Alright, sir, we've got to design the crates *"
+            + "\n* we'll be using to carry our goods, as well   *"
+            + "\n* as our own resources. No need to worry about *"
+            + "\n* the cost. The shipping company has already   *"
+            + "\n* paid for the shipping crates, but it's up to *"
+            + "\n* us to tell the staff how big we want them.   *"
+            + "\n*                                              *"
+            + "\n************************************************"
+            + "\n                                                "
+            + "\nPlease enter crate length: ");
             String input = keyboard.readLine();
             int length = Integer.parseInt(input);
             
@@ -46,11 +48,13 @@ public class DesignCrateView extends View {
                 if (length < 5 || length > 20) {
                     ErrorView.display(this.getClass().getName(), "\nInvalid crate length: The length cannot be less "
                             + "than 5 or greater than 20 feet long.");
+                    return false;
                 }
             } catch (Exception e) {
                 ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number."
                         + " Try again." + e.getMessage());
             }
+            
             
             
             this.console.println("\nPlease enter crate height: ");
@@ -63,6 +67,7 @@ public class DesignCrateView extends View {
                 if (height < 2 || height > 10) {
                     ErrorView.display(this.getClass().getName(), "\nInvalid crate height: The height cannot be less "
                             + "than 2 or greater than 10 feet high");
+                    return false;
                 }
             } catch (Exception e) {
                 ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number."
@@ -84,6 +89,7 @@ public class DesignCrateView extends View {
                 if (width < 2 || width > 8) {
                     ErrorView.display(this.getClass().getName(), "\nInvalid crate width: The width cannot be less "
                             + "than 2 or greater than 8 feet wide");
+                    return false;
                 }
             } catch (Exception e) {
                 ErrorView.display(this.getClass().getName(), "\nYou must enter a valid number."
