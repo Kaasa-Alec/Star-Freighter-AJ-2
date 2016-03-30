@@ -5,7 +5,9 @@
  */
 package byui.cit260.starfreighteraj.model;
 
+
 import java.io.Serializable;
+import java.lang.ProcessBuilder.Redirect.Type;
 
 /**
  *
@@ -108,5 +110,9 @@ public class Game implements Serializable  {
     public String toString() {
         return "Game{" + "totalTime=" + totalTime + ", numberOfPlayers=" + numberOfPlayers + '}';
     }    
+
+    public Actor[] getActors(Type String) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

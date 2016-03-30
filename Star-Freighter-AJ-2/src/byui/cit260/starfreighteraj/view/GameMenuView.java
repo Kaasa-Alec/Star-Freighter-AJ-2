@@ -14,6 +14,7 @@ import byui.cit260.starfreighteraj.model.Map;
 import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Integer.sum;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -291,7 +292,8 @@ public class GameMenuView extends View {
             outFile = new FileWriter(filePath);
             
             Game game = StarFreighterAJ.getCurrentGame();
-            Actor[] actor  = game.getActors();
+            ArrayList<Actor> actors  = new ArrayList<>(); 
+            game.getActors();
 			
             // The report must include a title and column headings
             outFile.write("\n         LIST OF ACTORS");
