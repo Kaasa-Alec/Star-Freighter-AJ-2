@@ -156,8 +156,8 @@ public class GameControl {
         Location[][] locations = map.getLocations();
         
         // start point
-        locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][1].setScene(scenes[SceneType.shop.ordinal()]);
+        locations[0][1].setScene(scenes[SceneType.start.ordinal()]);
+        locations[0][2].setScene(scenes[SceneType.shop.ordinal()]);
         locations[1][1].setScene(scenes[SceneType.gardens.ordinal()]);
         locations[1][2].setScene(scenes[SceneType.upgrade.ordinal()]);
         locations[2][1].setScene(scenes[SceneType.manufacturing.ordinal()]);
