@@ -74,7 +74,7 @@ public class MapControl {
                 "\n*Starting Scene is shown*");
         startingScene.setMapSymbol(" ST ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(000);
         scenes[SceneType.start.ordinal()] = startingScene;
         
         Scene shopScene = new Scene();
@@ -82,7 +82,7 @@ public class MapControl {
                 "\n Pick up mission supplies here");
         startingScene.setMapSymbol(" SH ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(100);
         scenes[SceneType.shop.ordinal()] = shopScene;
         
         Scene gardensScene = new Scene();
@@ -91,7 +91,7 @@ public class MapControl {
                         + "exterminate them to complete the Bug Killer Job");
         startingScene.setMapSymbol(" GD ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(200);
         scenes[SceneType.gardens.ordinal()] = gardensScene;
         
         Scene upgradeScene = new Scene();
@@ -99,7 +99,7 @@ public class MapControl {
                 "\nUpgrade the ship to get it ready for the voyage");
         startingScene.setMapSymbol(" UG ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(300);
         scenes[SceneType.upgrade.ordinal()] = upgradeScene;
         
         Scene manufacturingScene = new Scene();
@@ -108,7 +108,7 @@ public class MapControl {
                         + "pick some up in the Maufacturing Center");
         startingScene.setMapSymbol(" MC ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(400);
         scenes[SceneType.manufacturing.ordinal()] = manufacturingScene;
         
         Scene medBayScene = new Scene();
@@ -116,7 +116,7 @@ public class MapControl {
                 "\nComplete MedBay job here.");
         startingScene.setMapSymbol(" MB ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(500);
         scenes[SceneType.medBay.ordinal()] = medBayScene;
         
         Scene tradeCenterScene = new Scene();
@@ -125,7 +125,7 @@ public class MapControl {
                         + "stop him to complete the Smuggle Job");
         startingScene.setMapSymbol(" TC ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(600);
         scenes[SceneType.trade_center.ordinal()] = tradeCenterScene;
         
         Scene reactorScene = new Scene();
@@ -135,7 +135,7 @@ public class MapControl {
                         + "complete the Space Corsair Job!");
         startingScene.setMapSymbol(" RS ");
         startingScene.setBlocked(false);
-        startingScene.setTravelTime(240);
+        startingScene.setTravelTime(700);
         scenes[SceneType.reactor.ordinal()] = reactorScene;
        
         Scene finishScene = new Scene();
