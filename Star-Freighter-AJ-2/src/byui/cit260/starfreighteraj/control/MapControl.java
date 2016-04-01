@@ -77,7 +77,67 @@ public class MapControl {
         startingScene.setTravelTime(240);
         scenes[SceneType.start.ordinal()] = startingScene;
         
+        Scene shopScene = new Scene();
+        startingScene.setDescription(
+                "\n Pick up mission supplies here");
+        startingScene.setMapSymbol(" SH ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.shop.ordinal()] = shopScene;
         
+        Scene gardensScene = new Scene();
+        startingScene.setDescription(
+                "\nTerror mites have infested the hydproponic gardens, "
+                        + "exterminate them to complete the Bug Killer Job");
+        startingScene.setMapSymbol(" GD ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.gardens.ordinal()] = gardensScene;
+        
+        Scene upgradeScene = new Scene();
+        startingScene.setDescription(
+                "\nUpgrade the ship to get it ready for the voyage");
+        startingScene.setMapSymbol(" UG ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.upgrade.ordinal()] = upgradeScene;
+        
+        Scene manufacturingScene = new Scene();
+        startingScene.setDescription(
+                "\nNeed ship supplies? "
+                        + "pick some up in the Maufacturing Center");
+        startingScene.setMapSymbol(" MC ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.manufacturing.ordinal()] = manufacturingScene;
+        
+        Scene medBayScene = new Scene();
+        startingScene.setDescription(
+                "\nComplete MedBay job here.");
+        startingScene.setMapSymbol(" MB ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.medBay.ordinal()] = medBayScene;
+        
+        Scene tradeCenterScene = new Scene();
+        startingScene.setDescription(
+                "\nA smuggler is trying to offload contraband at the trade center"
+                        + "stop him to complete the Smuggle Job");
+        startingScene.setMapSymbol(" TC ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.trade_center.ordinal()] = tradeCenterScene;
+        
+        Scene reactorScene = new Scene();
+        startingScene.setDescription(
+                "\nThe Space Corsair is trying to sabotage the fusion reator so"
+                        + "his crew can raid the space station, stop him to "
+                        + "complete the Space Corsair Job!");
+        startingScene.setMapSymbol(" RS ");
+        startingScene.setBlocked(false);
+        startingScene.setTravelTime(240);
+        scenes[SceneType.reactor.ordinal()] = reactorScene;
+       
         Scene finishScene = new Scene();
         finishScene.setDescription(
                   "\n*Finish Scene is shown*");
@@ -90,7 +150,23 @@ public class MapControl {
     }
     
     public enum SceneType {
-        start,
-        finish;
+        start("Here is where your adventure Begins."),
+        shop("Go here to pick up mission supplies."),
+        gardens("There are terror mites infesting the hydroponic gardens."),
+        upgrade("Go here to upgrade the ship."),
+        manufacturing("Pick up ship supplies in the Manfacturing Center"),
+        medBay("The MedBay job can be completed here."),
+        trade_center("Stop the smugglers from selling their contraband!"),
+        reactor("Defeat the Space Corsair to save the space station from invasion!"),
+        finish("Launch Your Ship to travel to Omacron Persei-8.");
+    private final String description;
+        
+        SceneType(String description){
+            this.description = description;
+        }
+        
+        public String getDescription(){
+            return description;
+        }
     }
-}
+    }
