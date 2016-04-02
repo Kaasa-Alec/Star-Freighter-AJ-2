@@ -9,6 +9,7 @@ import byui.cit260.starfreighteraj.control.MapControl.SceneType;
 import byui.cit260.starfreighteraj.exceptions.GameControlException;
 import byui.cit260.starfreighteraj.exceptions.InventoryControlException;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
+import byui.cit260.starfreighteraj.model.Enemy;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
@@ -28,6 +29,8 @@ import java.io.ObjectOutputStream;
  * @author AlecSir
  */
 public class GameControl {
+
+    static Game game;
 
     public static Player createPlayer(String name) 
                                 throws GameControlException {
@@ -167,6 +170,17 @@ public class GameControl {
         locations[4][1].setScene(scenes[SceneType.finish.ordinal()]);
         
     }
+
+    
+
+    public static Enemy createEnemy(String enemyName, String enemyType) {
+        if (enemyName == null) return null;
+        
+        Enemy enemy = new Enemy();
+        return enemy;
+    }
+
+    
 
     public enum Item {
         crate,

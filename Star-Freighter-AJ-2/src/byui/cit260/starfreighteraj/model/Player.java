@@ -13,10 +13,15 @@ import java.util.Objects;
  * @author AlecSir
  */
 public class Player implements Serializable{
-    
+
+    private static Player player;
+
     // class instance variables
     private String name;
     private double totalMoneyEarned;
+    private int defenseStrategyLvl;
+    private int attackStrategyLvl;
+    private int hitPoints = 10;
 
     public Player() {
     }
@@ -75,6 +80,42 @@ public class Player implements Serializable{
         }
         return true;
     }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public int getMaxHitPoints() {
+        return maxHitPoints;
+    }
+
+    public void setMaxHitPoints(int maxHitPoints) {
+        this.maxHitPoints = maxHitPoints;
+    }
+    private int maxHitPoints = 10;
+    
+    public int getDefenseStrategyLvl(){
+        return defenseStrategyLvl;
+    }
+    public void setDefenseStrategyLvl(double defenseStrategyLvl){
+        this.defenseStrategyLvl=(int) defenseStrategyLvl;
+    }
+    
+    public int getAttackStrategyLvl(){
+        return attackStrategyLvl;
+    }
+    public void setAttackStrategyLvl(double attackStrategyLvl){
+        this.attackStrategyLvl=(int) attackStrategyLvl;
+    }
+    
+    public static Player getPlayer() {
+        return player;
+    }
+
     
     
 
