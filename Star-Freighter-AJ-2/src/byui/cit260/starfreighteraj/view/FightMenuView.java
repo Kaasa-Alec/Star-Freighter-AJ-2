@@ -26,7 +26,7 @@ public class FightMenuView extends View {
     
     private final String PEACE = "\n"
             +"\n You attempt to convince {enemyname} that they will"
-            +"\n be defeated by your superior. However"
+            +"\n be defeated by your superior training. However"
             +"\n your attempts to intimidate {enemytype} were in vain.";
     
     private Enemy enemy = null;
