@@ -43,6 +43,7 @@ public class GameMenuView extends View {
               + "\nD - Design Crate" 
               + "\nQ - Back to Main Menu"
               + "\nT - TEST SortedInventoryList (YOU HAVE TO CREATE THE INVENTORY BY STARTING A NEW GAME FIRST)" 
+              + "\nF - Fight Menu"  
               + "\nR - TEST - PrintReport"
               + "\nA - TEST - PrintActorReport"
               + "\n--------------------------------------------");
@@ -68,6 +69,9 @@ public class GameMenuView extends View {
                 break;
             case "T":
                 this.displaySortedInventoryList();
+                break;
+            case "F":
+                this.displayFightMenu();
                 break;
                 
             case "R":
@@ -319,4 +323,9 @@ public class GameMenuView extends View {
 			}
 		}
 	}
+
+    private void displayFightMenu() {
+        FightMenuView FightMenuView = new FightMenuView();
+        FightMenuView.display();
+    }
 }

@@ -176,5 +176,8 @@ public class FightView extends View {
        return "+";
    }
 
-    
+    private void waitSeconds(int i) {
+       ;
+
+    }   
 }
