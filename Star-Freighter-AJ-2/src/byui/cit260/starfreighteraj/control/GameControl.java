@@ -102,7 +102,7 @@ public class GameControl {
         
         // created array(list) of inventory items
         InventoryItem[] inventory = 
-                new InventoryItem[8];
+                new InventoryItem[9];
         
         InventoryItem crate = new InventoryItem();
         crate.setDescription("Crates");
@@ -152,6 +152,12 @@ public class GameControl {
         product.setRequiredAmount(0);
         inventory [Item.product.ordinal()] = product;
         
+        InventoryItem credit = new InventoryItem();
+        credit.setDescription("Credit");
+        credit.setQuantityInStock(100);
+        credit.setRequiredAmount(0);
+        inventory [Item.credit.ordinal()] = credit;
+        
         return inventory;
     }
 
@@ -190,7 +196,8 @@ public class GameControl {
         weapons,
         food,
         oxygen,
-        product;
+        product,
+        credit;
     }
         
     public static InventoryItem[] getSortedInventoryList() {

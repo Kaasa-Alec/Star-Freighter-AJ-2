@@ -6,8 +6,15 @@
 package byui.cit260.starfreighteraj.view;
 
 import byui.cit260.starfreighteraj.control.GameControl;
+import byui.cit260.starfreighteraj.model.Game;
+import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.ShipUpgrade;
+import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import star.freighter.aj.StarFreighterAJ;
 
 /**
  *
@@ -49,28 +56,31 @@ public class VendorMenuView extends View{
     @Override
     public boolean doAction(String value) {
         
-        value = value.toUpperCase();
-        
-        switch (value) {
-            case "O":
-                this.buyOxygen();
-                break;
-            case "F":
-                this.buyFood();
-                break;
-            case "J":
-                this.displayJobsBoard();
-                break;
-            case "S":
-                this.displayUpgradeView();
-                break;
-            default:
-                ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
-                break;
+        try {
+            value = value.toUpperCase();
+            
+            switch (value) {
+                case "O":
+                    this.buyOxygen();
+                    break;
+                case "F":
+                    this.buyFood();
+                    break;
+                case "J":
+                    this.displayJobsBoard();
+                    break;
+                case "S":
+                    this.displayUpgradeView();
+                    break;
+                default:
+                    ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
+                    break;
+            }
+            //moved "return false;" from here to line 80
+        } catch (IOException ex) {
+            Logger.getLogger(VendorMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
-    
     }
     
     private void displayUpgradeView() {
@@ -91,8 +101,45 @@ public class VendorMenuView extends View{
         }
     }
 
-    private void buyOxygen() {
-        this.console.println("*** buyOxygen function called ***");
+    private boolean buyOxygen() throws IOException {
+        Game game = StarFreighterAJ.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        
+        // Declare price
+        int price = 10;
+        
+        // Prompt user for amount desired
+        this.console.println("\nPlease enter the amount you wish to purchase.");
+        
+        // Get amount desired by user
+        String input  = keyboard.readLine();
+        
+        // Convert amount from string to int
+        int amount = parseInt(input);
+        
+        // Get total by multiplying amount by price
+        int total = amount * price;
+        
+        /* ONLY WAY IT CAN TELL WHAT "credit" IS. NO IDEA HOW TO MAKE IT READ THE
+           ACTUAL "credit" ITEM IN THE INVENTORY AND ADD AND SUBTRACT FROM IT. */
+        int credit = 100;
+        
+        // Check to see if total is greater than current funds, display error if so
+        if (total > credit) {
+            ErrorView.display(this.getClass().getName(), "\nYou don't have enough money.");
+            return false;
+        }
+        
+        // Add item to inventory and subtract credits from inventory
+        credit -= total;
+        
+        // Output amount bought, total price, and remaining credits to the user
+        this.console.println("\nYou bought " + amount + " orders of Oxygen for " + total + 
+	" credits, leaving you with " + credit + " credits remaining.");
+        
+        // Return to the vendor menu
+        return true;
+        
     }
 
     private void buyFood() {
