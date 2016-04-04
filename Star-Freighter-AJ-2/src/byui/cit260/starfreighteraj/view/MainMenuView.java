@@ -8,7 +8,6 @@ package byui.cit260.starfreighteraj.view;
 import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import star.freighter.aj.StarFreighterAJ;

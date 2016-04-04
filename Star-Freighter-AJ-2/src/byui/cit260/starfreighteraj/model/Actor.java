@@ -5,10 +5,8 @@
  */
 package byui.cit260.starfreighteraj.model;
 
-import byui.cit260.starfreighteraj.model.Location;
 import java.awt.Point;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *

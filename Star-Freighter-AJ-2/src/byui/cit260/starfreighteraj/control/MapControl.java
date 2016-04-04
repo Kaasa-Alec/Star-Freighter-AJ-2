@@ -8,6 +8,7 @@ package byui.cit260.starfreighteraj.control;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
 import byui.cit260.starfreighteraj.model.Actor;
 import byui.cit260.starfreighteraj.model.Game;
+import byui.cit260.starfreighteraj.model.Location;
 import byui.cit260.starfreighteraj.model.Map;
 import byui.cit260.starfreighteraj.model.Scene;
 import java.awt.Point;
@@ -19,7 +20,7 @@ import star.freighter.aj.StarFreighterAJ;
  */
 public class MapControl {
 
-    public static Map createMap() {
+    public static Map createMap() throws MapControlException {
         // create the map
         Map map = new Map(20, 20);
         
@@ -27,20 +28,20 @@ public class MapControl {
         Scene[] scenes = createScenes();
         
         // assign scenes to locations
-        GameControl.assignScenesToLocations(map, scenes);
+        assignScenesToLocations(map, scenes);
         
         return map;
     }
     
-    public static void moveActorToLocation (Actor actor, Point coordinates) 
+    public static void moveActorToLocation (Game game, Actor actor, Point coordinates) 
                             throws MapControlException {
         
-        Map map = StarFreighterAJ.getCurrentGame().getMap();
-        int newRow = coordinates.x-1;
-        int newColumn = coordinates.y-1;
+        Map map = game.getMap();
         
-        if (newRow < 0 || newRow >= map.getNoOfRows() ||
-            newColumn < 0 || newColumn >= map.getNoOfColumns()) {
+        Location location = game.getMap().getLocations()[coordinates.x][coordinates.y];
+        
+        if (coordinates.x < 0 || coordinates.x >= map.getNoOfRows() ||
+            coordinates.y < 0 || coordinates.y >= map.getNoOfColumns()) {
             throw new MapControlException("Can not move actor to location "
                                         + coordinates.x + ", " + coordinates.y
                                         + " because that location is outside "
@@ -49,14 +50,12 @@ public class MapControl {
         
     }
 
-    public static void moveActorsToStartingLocation(Map map) 
+    public static void moveActorsToStartingLocation(Map map, Actor[] actors) 
                             throws MapControlException {
-        
-        Actor[] actors = Actor.values();
-        
+        Game game = StarFreighterAJ.getCurrentGame();        
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
-            MapControl.moveActorToLocation(actor, coordinates);
+            MapControl.moveActorToLocation(game, actor, coordinates);
             
             }
         
@@ -149,6 +148,22 @@ public class MapControl {
         return scenes;
     }
     
+    static void assignScenesToLocations(Map map, Scene[] scenes) {
+        Location[][] locations = map.getLocations();
+        
+        // start point
+        locations[0][1].setScene(scenes[SceneType.start.ordinal()]);
+        locations[0][2].setScene(scenes[SceneType.shop.ordinal()]);
+        locations[1][1].setScene(scenes[SceneType.gardens.ordinal()]);
+        locations[1][2].setScene(scenes[SceneType.upgrade.ordinal()]);
+        locations[2][1].setScene(scenes[SceneType.manufacturing.ordinal()]);
+        locations[2][2].setScene(scenes[SceneType.medBay.ordinal()]);
+        locations[3][1].setScene(scenes[SceneType.trade_center.ordinal()]);
+        locations[3][2].setScene(scenes[SceneType.reactor.ordinal()]);
+        locations[4][1].setScene(scenes[SceneType.finish.ordinal()]);
+        
+    }
+    
     public enum SceneType {
         start("Here is where your adventure Begins."),
         shop("Go here to pick up mission supplies."),
@@ -169,4 +184,4 @@ public class MapControl {
             return description;
         }
     }
-    }
+}

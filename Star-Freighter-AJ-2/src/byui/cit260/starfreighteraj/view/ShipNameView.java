@@ -8,9 +8,6 @@ package byui.cit260.starfreighteraj.view;
 import byui.cit260.starfreighteraj.control.GameControl;
 import byui.cit260.starfreighteraj.exceptions.GameControlException;
 import byui.cit260.starfreighteraj.model.ShipModel;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

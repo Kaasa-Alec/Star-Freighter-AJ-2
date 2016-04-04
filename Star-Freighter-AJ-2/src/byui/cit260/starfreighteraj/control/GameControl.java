@@ -5,22 +5,22 @@
  */
 package byui.cit260.starfreighteraj.control;
 
-import byui.cit260.starfreighteraj.control.MapControl.SceneType;
 import byui.cit260.starfreighteraj.exceptions.GameControlException;
-import byui.cit260.starfreighteraj.exceptions.InventoryControlException;
 import byui.cit260.starfreighteraj.exceptions.MapControlException;
+import byui.cit260.starfreighteraj.model.Actor;
 import byui.cit260.starfreighteraj.model.Enemy;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
 import byui.cit260.starfreighteraj.model.Map;
 import byui.cit260.starfreighteraj.model.Player;
-import byui.cit260.starfreighteraj.model.Scene;
 import byui.cit260.starfreighteraj.model.ShipModel;
 import star.freighter.aj.StarFreighterAJ;
 import byui.cit260.starfreighteraj.model.ShipUpgrade;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -30,6 +30,7 @@ import java.io.ObjectOutputStream;
  */
 public class GameControl {
 
+    // Jeffrey's FightControl
     static Game game;
 
     public static Player createPlayer(String name) 
@@ -48,7 +49,9 @@ public class GameControl {
         return player;
     }
 
-    public static void createNewGame(Player player) throws MapControlException {
+    public static void createNewGame(Player player) 
+            throws MapControlException {
+        
         Game game = new Game(); //create new game
         StarFreighterAJ.setCurrentGame(game); //save in StarFreighterAJ
         
@@ -62,10 +65,12 @@ public class GameControl {
         game.setStarShip(ship); //save starship in game 
         
         Map map = MapControl.createMap(); //create and initialize new map
-        game.setMap(map); //save map in game
+        game.setMap(map); //save map in 
+        
+        Actor[] actors = Actor.values();
         
         //move actors to starting position in the map
-        MapControl.moveActorsToStartingLocation(map);
+        MapControl.moveActorsToStartingLocation(map, actors);
     }
         
 
@@ -84,25 +89,11 @@ public class GameControl {
         return ship;
     }
     
-    public static void createCrate(int crateVolume) throws InventoryControlException {
-        
-        if (crateVolume == -1) {
-            throw new InventoryControlException ("Error creating the crate"
-                    + "Please try again.");
-        }
-        
-        InventoryItem crate = new InventoryItem();
-        crate.setCrateVolume(crateVolume);
-        
-        StarFreighterAJ.setCrate(crate);
-        
-    }
-
     public static InventoryItem[] createInventoryList() {
         
         // created array(list) of inventory items
         InventoryItem[] inventory = 
-                new InventoryItem[9];
+            new InventoryItem[9];
         
         InventoryItem crate = new InventoryItem();
         crate.setDescription("Crates");
@@ -161,24 +152,6 @@ public class GameControl {
         return inventory;
     }
 
-    static void assignScenesToLocations(Map map, Scene[] scenes) {
-        Location[][] locations = map.getLocations();
-        
-        // start point
-        locations[0][1].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][2].setScene(scenes[SceneType.shop.ordinal()]);
-        locations[1][1].setScene(scenes[SceneType.gardens.ordinal()]);
-        locations[1][2].setScene(scenes[SceneType.upgrade.ordinal()]);
-        locations[2][1].setScene(scenes[SceneType.manufacturing.ordinal()]);
-        locations[2][2].setScene(scenes[SceneType.medBay.ordinal()]);
-        locations[3][1].setScene(scenes[SceneType.trade_center.ordinal()]);
-        locations[3][2].setScene(scenes[SceneType.reactor.ordinal()]);
-        locations[4][1].setScene(scenes[SceneType.finish.ordinal()]);
-        
-    }
-
-    
-
     public static Enemy createEnemy(String enemyName, String enemyType) {
         if (enemyName == null) return null;
         
@@ -201,13 +174,27 @@ public class GameControl {
     }
         
     public static InventoryItem[] getSortedInventoryList() {
-        System.out.println("\n*** getSortedInventoryList stub function called ***");
-        return null;
+        InventoryItem[] inventoryList = StarFreighterAJ.getCurrentGame().getInventory();
+        
+        InventoryItem[] sortedInventoryList = inventoryList.clone();
+        
+        InventoryItem tempInventoryItem;
+        for (int i = 0; i < sortedInventoryList.length-1; i++) {
+            for (int j = 0; j < sortedInventoryList.length-1-i; j++) {
+                if (sortedInventoryList[j].getDescription().
+                        compareToIgnoreCase(sortedInventoryList[j + 1].getDescription()) > 0) {
+                    tempInventoryItem = sortedInventoryList[j];
+                    sortedInventoryList[j] = sortedInventoryList[j+1];
+                    sortedInventoryList[j+1] = tempInventoryItem;
+                }
+            }
+        }
+        
+        return sortedInventoryList;
     }
     
     public static Location[][] getMapLocations() {
-        System.out.println("\n*** getMapLocations stub function called *** ");
-        return null;
+        return StarFreighterAJ.getCurrentGame().getMap().getLocations();
     }
     
     public static ShipUpgrade[] getSortedUpgradeList() {
@@ -223,26 +210,29 @@ public class GameControl {
             
             output.writeObject(game); // write the game object out to file
         }
-        catch(Exception e) {
+        catch(IOException e) {
             throw new GameControlException(e.getMessage());
         }
     }
     
-    public static void getSavedGame(String filePath) 
-            throws GameControlException {
+    public static void getSavedGame(String filepath) 
+                        throws GameControlException {
         Game game = null;
-        
-        try (FileInputStream fips = new FileInputStream(filePath)) {
-            ObjectInputStream input = new ObjectInputStream(fips);
+
+        try( FileInputStream fips = new FileInputStream(filepath)) {
+            ObjectInputStream output = new ObjectInputStream(fips);
             
-            game = (Game) input.readObject(); // read the game object from file
+            game = (Game) output.readObject(); // read the game object from file
+        }
+        catch(FileNotFoundException fnfe) {
+            throw new GameControlException(fnfe.getMessage());
         }
         catch(Exception e) {
             throw new GameControlException(e.getMessage());
         }
-        
-        // close the output file
-        StarFreighterAJ.setCurrentGame(game); // save in StarFreighterAJ
+
+       // close the outuput file
+       StarFreighterAJ.setCurrentGame(game); // save in CuriousWorkmanship
     }
     
     

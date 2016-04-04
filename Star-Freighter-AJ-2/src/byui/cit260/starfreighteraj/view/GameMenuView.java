@@ -10,12 +10,9 @@ import byui.cit260.starfreighteraj.model.Actor;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.Location;
-import byui.cit260.starfreighteraj.model.Map;
 import java.io.FileWriter;
 import java.io.IOException;
-import static java.lang.Integer.sum;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import star.freighter.aj.StarFreighterAJ;
@@ -29,7 +26,6 @@ public class GameMenuView extends View {
     private Location location;
     private int noOfRows;
     private int noOfColumns;
-    private int requiredAmount;
     
     
     public GameMenuView() {
@@ -186,40 +182,8 @@ public class GameMenuView extends View {
     }
 
     private void displaySortedInventoryList() {
-        try {
-            
-            StringBuilder line;
+        GameControl.getSortedInventoryList();
         
-            Game game = StarFreighterAJ.getCurrentGame();
-            InventoryItem[] inventory = game.getInventory();
-        
-            int sum = 0;
-        
-            this.console.println("\n         INVENTORY ITEM TOTALS");
-            line = new StringBuilder("                                   ");
-            line.insert(0, "DESCRIPTION");
-            line.insert(20, "REQUIRED");
-            line.insert(30, "IN STOCK");
-            this.console.println(line.toString());
-        
-            for (InventoryItem item : inventory) {
-                line = new StringBuilder("                                  ");
-                line.insert(0, item.getDescription());
-                line.insert(23, item.getRequiredAmount());
-                line.insert(33, item.getQuantityInStock());
-            
-                // Get the required amount
-                requiredAmount = item.getRequiredAmount();     
-                // DISPLAY the line
-                this.console.println(line.toString());
-                sum += requiredAmount;
-            }
-        
-            this.console.println("\nThe total required amount of items is " 
-                    + sum + ".");
-        } catch (Exception ex) {
-                ErrorView.display("GameMenuView", ex.getMessage());
-        }
     }
     
     private void reportFilePath() throws IOException {

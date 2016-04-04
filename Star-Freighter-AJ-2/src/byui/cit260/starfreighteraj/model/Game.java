@@ -6,8 +6,8 @@
 package byui.cit260.starfreighteraj.model;
 
 
+import java.awt.Point;
 import java.io.Serializable;
-import java.lang.ProcessBuilder.Redirect.Type;
 
 /**
  *
@@ -17,14 +17,16 @@ public class Game implements Serializable  {
     
     //class instance variable
     private double totalTime;
-    private StarShip starship;
+    private ShipModel starship;
     private InventoryItem[] inventory;
     private Player player;
     private String [] actors;
     private Map map;
-    private double numberOfPlayers;
+    private Point[] actorsLocation = new Point[Actor.values().length];
+    private Enemy enemy;
 
     public Game() {
+        this.totalTime = 0;
     }
 
     public double getTotalTime() {
@@ -51,6 +53,8 @@ public class Game implements Serializable  {
         this.player = player;
     }
 
+    
+    // Jeffrey's actorReport in the GameMenuView
     public String[] getActors() {
         return actors;
     }
@@ -67,11 +71,19 @@ public class Game implements Serializable  {
         this.map = map;
     }
     
-    public StarShip getStarShip() {
+    public Point[] getActorsLocation() {
+        return actorsLocation;
+    }
+
+    public void setActorsLocation(Point[] actorsLocation) {
+        this.actorsLocation = actorsLocation;
+    }
+    
+    public ShipModel getStarShip() {
         return starship;
     }
 
-    public void setStarShip(ShipModel ship) {
+    public void setStarShip(ShipModel starship) {
         this.starship = starship;
     }
     
@@ -81,7 +93,6 @@ public class Game implements Serializable  {
     public int hashCode() {
         int hash = 3;
         hash = 17 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.numberOfPlayers) ^ (Double.doubleToLongBits(this.numberOfPlayers) >>> 32));
         return hash;
     }
 
@@ -100,23 +111,16 @@ public class Game implements Serializable  {
         if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.numberOfPlayers) != Double.doubleToLongBits(other.numberOfPlayers)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "totalTime=" + totalTime + ", numberOfPlayers=" + numberOfPlayers + '}';
+        return "Game{" + "totalTime=" + totalTime + '}';
     }    
 
-    public Actor[] getActors(Type String) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Enemy getEnemy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return enemy;
     }
     
 }

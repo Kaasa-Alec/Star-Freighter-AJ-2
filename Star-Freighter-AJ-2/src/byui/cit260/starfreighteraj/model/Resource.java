@@ -12,6 +12,11 @@ import java.util.Objects;
  *
  * @author AlecSir
  */
+
+
+
+//I THINK WE MIGHT BE ABLE TO GET RID OF THIS ONE
+
 public class Resource implements Serializable{
     
     private String resourceType;

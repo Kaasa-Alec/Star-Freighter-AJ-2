@@ -6,13 +6,8 @@
 package byui.cit260.starfreighteraj.view;
 
 
-import byui.cit260.starfreighteraj.control.GameControl;
-import static byui.cit260.starfreighteraj.control.GameControl.Item.crate;
-import byui.cit260.starfreighteraj.control.InventoryControl;
-import byui.cit260.starfreighteraj.exceptions.InventoryControlException;
-import byui.cit260.starfreighteraj.model.InventoryItem;
+
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

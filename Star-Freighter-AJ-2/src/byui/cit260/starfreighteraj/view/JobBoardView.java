@@ -5,8 +5,6 @@
  */
 package byui.cit260.starfreighteraj.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author AlecSir

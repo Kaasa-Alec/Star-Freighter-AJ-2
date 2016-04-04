@@ -14,21 +14,17 @@ import java.util.Objects;
  */
 public class InventoryItem implements Serializable{
     
-    private String inventoryType;
     private int quantityInStock;
     private int requiredAmount;
-    private int crateVolume;
     private String description;
 
     public InventoryItem() {
     }
     
-    public String getInventoryType() {
-        return inventoryType;
-    }
-
-    public void setInventoryType(String inventoryType) {
-        this.inventoryType = inventoryType;
+    public InventoryItem(int quantityInStock, int requiredAmount, String description) {
+        this.quantityInStock = quantityInStock;
+        this.requiredAmount = requiredAmount;
+        this.description = description;
     }
 
     public int getQuantityInStock() {
@@ -47,18 +43,18 @@ public class InventoryItem implements Serializable{
         this.requiredAmount = requiredAmount;
     }
     
-    public int getCrateVolume(){
-        return crateVolume;
+    public String getDescription() {
+        return description;
     }
-    
-    public void setCrateVolume(int crateVolume){
-        this.crateVolume = crateVolume;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.inventoryType);
+        hash = 31 * hash + Objects.hashCode(this.description);
         hash = 31 * hash + this.quantityInStock;
         hash = 31 * hash + this.requiredAmount;
         return hash;
@@ -66,7 +62,7 @@ public class InventoryItem implements Serializable{
 
     @Override
     public String toString() {
-        return "Inventory{" + "inventoryItem=" + inventoryType + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + '}';
+        return "Inventory{" + "inventoryItem=" + description + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + '}';
     }
     
     @Override
@@ -87,17 +83,9 @@ public class InventoryItem implements Serializable{
         if (this.requiredAmount != other.requiredAmount) {
             return false;
         }
-        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
+        if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         return true;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

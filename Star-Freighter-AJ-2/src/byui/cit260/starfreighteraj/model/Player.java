@@ -14,11 +14,11 @@ import java.util.Objects;
  */
 public class Player implements Serializable{
 
+    // Jeffrey's FightView
     private static Player player;
 
     // class instance variables
     private String name;
-    private double totalMoneyEarned;
     private int defenseStrategyLvl;
     private int attackStrategyLvl;
     private int hitPoints = 10;
@@ -26,7 +26,9 @@ public class Player implements Serializable{
     public Player() {
     }
 
-    
+    public Player(String name) {
+        this.name = name;
+    }
     
     public String getName() {
         return name;
@@ -36,30 +38,18 @@ public class Player implements Serializable{
         this.name = name;
     }
 
-    public double getTotalMoneyEarned() {
-        return totalMoneyEarned;
-    }
-
-    public void setTotalMoneyEarned(double totalMoneyEarned) {
-        this.totalMoneyEarned = totalMoneyEarned;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.totalMoneyEarned) ^ (Double.doubleToLongBits(this.totalMoneyEarned) >>> 32));
         return hash;
     }
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", totalMoneyEarned=" + totalMoneyEarned + '}';
+        return "Player{" + "name=" + name + '}';
     }
 
-    
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -72,9 +62,6 @@ public class Player implements Serializable{
             return false;
         }
         final Player other = (Player) obj;
-        if (Double.doubleToLongBits(this.totalMoneyEarned) != Double.doubleToLongBits(other.totalMoneyEarned)) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -112,11 +99,9 @@ public class Player implements Serializable{
         this.attackStrategyLvl=(int) attackStrategyLvl;
     }
     
+    
+    // Jeffrey's FightView
     public static Player getPlayer() {
         return player;
     }
-
-    
-    
-
 }

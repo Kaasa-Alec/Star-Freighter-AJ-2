@@ -11,7 +11,6 @@ import byui.cit260.starfreighteraj.model.InventoryItem;
 import byui.cit260.starfreighteraj.model.ShipUpgrade;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import star.freighter.aj.StarFreighterAJ;

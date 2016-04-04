@@ -5,8 +5,6 @@
  */
 package byui.cit260.starfreighteraj.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author JeffJones
@@ -27,6 +25,7 @@ public class HelpMenuView extends View {
                   + "\n--------------------------------------------");
     }
     
+    @Override
     public boolean doAction(String value) {
         
         value = value.toUpperCase();

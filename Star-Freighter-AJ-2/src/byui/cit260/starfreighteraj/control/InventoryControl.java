@@ -6,7 +6,6 @@
 package byui.cit260.starfreighteraj.control;
 
 import byui.cit260.starfreighteraj.exceptions.InventoryControlException;
-import byui.cit260.starfreighteraj.model.InventoryItem;
 import java.io.Serializable;
 import java.util.Scanner;
 

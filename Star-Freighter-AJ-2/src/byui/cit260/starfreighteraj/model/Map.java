@@ -15,12 +15,9 @@ import java.io.Serializable;
 public class Map implements Serializable{
     
     //class instance variables
-    private int rowCount;
-    private int columnCount;
     private Location[][] locations;
     private int noOfRows;
     private int noOfColumns;
-    private int column;
 
     public Map() {
     }
@@ -51,61 +48,14 @@ public class Map implements Serializable{
             }
         }
     }
-
-    public int getRowCount() {
-        return rowCount;
-    }
-
-    public void setRowCount(int rowCount) {
-        this.rowCount = rowCount;
-    }
-
-    public int getColumnCount() {
-        return columnCount;
-    }
-
-    public void setColumnCount(int columnCount) {
-        this.columnCount = columnCount;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.rowCount) ^ (Double.doubleToLongBits(this.rowCount) >>> 32));
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.columnCount) ^ (Double.doubleToLongBits(this.columnCount) >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Map other = (Map) obj;
-        if (Double.doubleToLongBits(this.rowCount) != Double.doubleToLongBits(other.rowCount)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.columnCount) != Double.doubleToLongBits(other.columnCount)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + '}';
-    }
-
+    
     public Location[][] getLocations() {
-        System.out.println("\n*** getMapLocations stub function called *** ");
         return locations;
-    } 
+    }
+    
+    public void setLocations(Location [][] locations) {
+        this.locations = locations;
+    }
 
     public int getNoOfRows() {
         return noOfRows;
@@ -113,5 +63,36 @@ public class Map implements Serializable{
 
     public int getNoOfColumns() {
         return noOfColumns;
+    }
+    
+    @Override
+    public String toString() {
+        return "Map{" + "noOfRows=" + noOfRows + ", noOfColumns=" + noOfColumns + '}';
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + (int) (this.noOfRows ^ (this.noOfRows >>> 31));
+        hash = 29 * hash + (int) (this.noOfColumns ^ (this.noOfColumns >>> 31));
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Map other = (Map) obj;
+        if (this.noOfRows != other.noOfRows) {
+            return false;
+        }
+        if (this.noOfColumns != other.noOfColumns) {
+            return false;
+        }
+        return true;
     }
 }
