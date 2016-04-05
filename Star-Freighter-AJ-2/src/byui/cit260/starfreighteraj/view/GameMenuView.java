@@ -258,8 +258,9 @@ public class GameMenuView extends View {
                 outFile.write(item.getRequiredAmount() + "\t");
                 outFile.write(item.getQuantityInStock() + "\t\n");
             } 
-		} catch (IOException ex) {
-			this.console.println("Error printing report to file");
+		} catch (Exception ex) {
+			ErrorView.display("GameMenuView", "Error writing report to file. "
+                    + "\n\t" + ex.getMessage());
 		} finally {
 			if (outFile != null) { // if the file was successfully created
 				outFile.close(); // close the file stream
