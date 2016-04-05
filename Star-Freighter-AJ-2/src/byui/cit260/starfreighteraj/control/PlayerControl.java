@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.starfreighteraj.view;
+package byui.cit260.starfreighteraj.control;
 
 import byui.cit260.starfreighteraj.model.Player;
 

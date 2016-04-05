@@ -5,6 +5,7 @@
  */
 package byui.cit260.starfreighteraj.view;
 
+import byui.cit260.starfreighteraj.control.PlayerControl;
 import byui.cit260.starfreighteraj.control.FightControl;
 import byui.cit260.starfreighteraj.control.FightTemplateControl;
 import byui.cit260.starfreighteraj.model.Enemy;
