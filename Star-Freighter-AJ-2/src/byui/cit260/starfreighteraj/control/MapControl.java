@@ -12,6 +12,7 @@ import byui.cit260.starfreighteraj.model.Location;
 import byui.cit260.starfreighteraj.model.Map;
 import byui.cit260.starfreighteraj.model.Scene;
 import java.awt.Point;
+import java.security.InvalidParameterException;
 import star.freighter.aj.StarFreighterAJ;
 
 /**
@@ -48,19 +49,132 @@ public class MapControl {
                                         + " the bounds of the map.");
         }
         
+        // Add and save actor to location
+        location.addActor(actor);
+        
+        game.getActorsLocation()[actor.ordinal()].setLocation(coordinates);
+        
+        location.setVisited(true);
+        
     }
+    
+    public static Point moveActor(Actor actor, Direction direction, int 
+            distance) throws MapControlException {
+        
+        // Set location to open
+        Point blockedLocation = null;
+        
+        // Make sure actors exist by starting a game first
+        if (actor == null  || direction == null  || distance < 1) {
+            
+            throw new InvalidParameterException("Invalid actor, direction, or distance. Try again.");
+            
+        }
+        
+        // Get game, map, and actor's current location
+        Game game = StarFreighterAJ.getCurrentGame();    
+        Map map = StarFreighterAJ.getCurrentGame().getMap();
+        
+        Point currentCoordinates = game.getActorsLocation()[actor.ordinal()];
+        Point newCoordinates = null;
+        
+        // Check to make sure the actor is assigned to a location first
+        if (currentCoordinates == null) {
+            
+            throw new MapControlException("Actor is not assigned to a location.");
+            
+        }
+        
+        // Declare the row and column of the location with the current coordinates
+        int currentRow = currentCoordinates.x;
+        int currentColumn = currentCoordinates.y;
 
-    public static void moveActorsToStartingLocation(Map map, Actor[] actors) 
-                            throws MapControlException {
-        Game game = StarFreighterAJ.getCurrentGame();        
+        // Check to make sure the actor is within bounds of the map
+        if (currentRow < 0  || currentRow >= map.getNoOfRows() || currentColumn < 0 
+                || currentColumn >= map.getNoOfColumns()) {
+            
+            throw new MapControlException("Actor is out of bounds.");
+            
+        }
+        
+        // get the new coordinates
+        int newRow = currentCoordinates.x + (direction.getxIncrement() * distance);
+        int newColumn = currentCoordinates.y + (direction.getyIncrement() * distance);
+        
+        // Check to see if the target location is out of bounds
+        if (newRow < 0  || newRow >= map.getNoOfRows() || newColumn < 0  || 
+                newColumn >= map.getNoOfColumns()) {
+            
+            throw new MapControlException("You can't move out of bounds.");
+            
+        }  
+        
+        
+        // Check if location is blocked
+        boolean blocked = false;
+        Location[][] locations = map.getLocations();
+        
+        int noOfRows = (newRow - currentRow) * direction.getxIncrement();
+        int row = currentRow + direction.getxIncrement();
+        
+        for (int i = 0; i < noOfRows; i++ ) {
+            
+            locations[row][currentColumn].setVisited(true);
+            
+            if (locations[row][currentColumn].getScene().isBlocked()){ 
+                
+                blocked = true;
+                newRow = row - direction.getxIncrement();
+                blockedLocation = new Point(row+1, currentColumn+1);
+                
+                break;
+            }
+            
+            row += direction.getxIncrement();
+        }
+        
+        
+        int noOfColumns = (newColumn - currentColumn) * direction.getyIncrement();
+        int column = currentColumn + direction.getyIncrement();  
+        
+        for (int i = 0; i < noOfColumns; i++ ) {
+            
+            locations[currentRow][column].setVisited(true);
+
+            if (locations[currentRow][column].getScene().isBlocked()){ 
+                
+                blocked = true;
+                newColumn = column - direction.getyIncrement();
+                blockedLocation = new Point(currentRow+1, column+1);
+                
+                break;
+            }
+            
+            column += direction.getyIncrement();
+        }
+        
+        
+        if (currentRow != newRow || currentColumn != newColumn) {
+            Location currentLocation = map.getLocations()[currentRow][currentColumn];
+            currentLocation.removeActor(actor);
+
+            // save actor to new coordinates
+            newCoordinates = new Point(newRow, newColumn);
+            MapControl.moveActorToLocation(game, actor, newCoordinates);
+        }
+        return blockedLocation;
+    }    
+
+    public static void moveActorsToStartingLocation(Map map, Actor[] actors) throws MapControlException {
+        /* Game game = StarFreighterAJ.getCurrentGame(); 
+        
         for (Actor actor : actors) {
             Point coordinates = actor.getCoordinates();
             MapControl.moveActorToLocation(game, actor, coordinates);
             
-            }
-        
-        
-        
+        } */
+                System.out.println("*** moveActorsToStartingLocation stub function called ***");
+
     }
 
     private static Scene[] createScenes() {
@@ -148,7 +262,7 @@ public class MapControl {
         return scenes;
     }
     
-    static void assignScenesToLocations(Map map, Scene[] scenes) {
+    private static void assignScenesToLocations(Map map, Scene[] scenes) {
         Location[][] locations = map.getLocations();
         
         // start point
@@ -174,7 +288,8 @@ public class MapControl {
         trade_center("Stop the smugglers from selling their contraband!"),
         reactor("Defeat the Space Corsair to save the space station from invasion!"),
         finish("Launch Your Ship to travel to Omacron Persei-8.");
-    private final String description;
+        
+        private final String description;
         
         SceneType(String description){
             this.description = description;
@@ -182,6 +297,35 @@ public class MapControl {
         
         public String getDescription(){
             return description;
+        }
+    }
+    
+    public enum Direction {
+    L("Left", 0, -1),
+    R("Right", 0, 1),
+    U("Up", -1, 0),
+    D("Down", 1, 0);
+    
+        private final String value;
+        private final int xIncrement;
+        private final int yIncrement;
+
+        private Direction(String name, int xIncrement, int yIncrement) {
+            this.value = name;
+            this.xIncrement = xIncrement;
+            this.yIncrement = yIncrement;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getxIncrement() {
+            return xIncrement;
+        }
+
+        public int getyIncrement() {
+            return yIncrement;
         }
     }
 }

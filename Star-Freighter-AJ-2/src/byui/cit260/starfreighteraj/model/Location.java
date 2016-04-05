@@ -17,22 +17,27 @@ public class Location implements Serializable{
     //class instance variables
     private int row;
     private int column;
-    private boolean explored;
-    private int amountRemaining;
+    private boolean visited;
+    /* Do we need this?
+    private int amountRemaining; */
     private Scene scene;
     private ArrayList<Actor> actors;
     public boolean getVisited;
     public boolean setVisited;
 
     public Location() {
+        this.actors = new ArrayList<Actor>();
     }
 
-    Location(int i, int i0) {
-        
+    public Location(int row, int column, Scene scene, ArrayList<Actor> actors) {
+        this.row = row;
+        this.column = column;
+        this.visited = false;
+        this.scene = scene;
+        this.actors = actors;
     }
     
     
-
     public double getRow() {
         return row;
     }
@@ -49,20 +54,28 @@ public class Location implements Serializable{
         this.column = column;
     }
 
-    public boolean isExplored() {
-        return explored;
+    public boolean isVisited() {
+        return visited;
     }
 
-    public void setExplored(boolean explored) {
-        this.explored = explored;
+    public void setExplored(boolean visited) {
+        this.visited = visited;
     }
 
-    public double getAmountRemaining() {
+    /* public double getAmountRemaining() {
         return amountRemaining;
     }
 
     public void setAmountRemaining(int amountRemaining) {
         this.amountRemaining = amountRemaining;
+    } */
+    
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 
     @Override
@@ -70,8 +83,8 @@ public class Location implements Serializable{
         int hash = 7;
         hash = 71 * hash + (int) (Double.doubleToLongBits(this.row) ^ (Double.doubleToLongBits(this.row) >>> 32));
         hash = 71 * hash + (int) (Double.doubleToLongBits(this.column) ^ (Double.doubleToLongBits(this.column) >>> 32));
-        hash = 71 * hash + (this.explored ? 1 : 0);
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.amountRemaining) ^ (Double.doubleToLongBits(this.amountRemaining) >>> 32));
+        hash = 71 * hash + (this.visited ? 1 : 0);
+        /* hash = 71 * hash + (int) (Double.doubleToLongBits(this.amountRemaining) ^ (Double.doubleToLongBits(this.amountRemaining) >>> 32)); */
         return hash;
     }
 
@@ -93,34 +106,39 @@ public class Location implements Serializable{
         if (Double.doubleToLongBits(this.column) != Double.doubleToLongBits(other.column)) {
             return false;
         }
-        if (this.explored != other.explored) {
+        if (this.visited != other.visited) {
             return false;
         }
-        if (Double.doubleToLongBits(this.amountRemaining) != Double.doubleToLongBits(other.amountRemaining)) {
+        /* if (Double.doubleToLongBits(this.amountRemaining) != Double.doubleToLongBits(other.amountRemaining)) {
             return false;
-        }
+        } */
         return true;
     }
 
     @Override
     public String toString() {
-        return "Location{" + "row=" + row + ", column=" + column + ", explored=" + explored + ", amountRemaining=" + amountRemaining + '}';
+        return "Location{" + "row=" + row + ", column=" + column + ", visited=" + visited + '}';
     }
 
-    private boolean visited = false;
     
-    public boolean getVisited (boolean newValue) {
-        return visited;
-    }
+    
     
     public void setVisited(boolean newValue) {
         visited = newValue;
     }
-
-    public void setScene(Scene scene) {
-
+    
+    public void addActor(Actor actor) {
+        if (actor == null || this.actors.contains(actor)) {
+            return;
+        }
+            
+        this.actors.add(actor);
     }
-    
-    
-    
+
+    public void removeActor(Actor actor) {
+        if (actor == null) {
+            return;
+        }
+        this.actors.remove(actor);
+    }
 }

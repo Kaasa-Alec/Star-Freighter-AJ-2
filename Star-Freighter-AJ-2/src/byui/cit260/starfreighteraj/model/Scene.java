@@ -20,6 +20,9 @@ public class Scene implements Serializable {
     private boolean blocked;
     private char symbol;
 
+    public Scene(){
+    }
+    
     public String getDescription() {
         return description;
     }

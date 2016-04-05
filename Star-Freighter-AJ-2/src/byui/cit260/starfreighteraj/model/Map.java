@@ -25,25 +25,25 @@ public class Map implements Serializable{
     public Map(int noOfRows, int noOfColumns) {
         
         if (noOfRows < 1 || noOfColumns < 1) {
-            ErrorView.display(this.getClass().getName(), "The number of rows and columns must be > zero");
+            ErrorView.display(this.getClass().getName(), "The numbers of rows and columns have to be greater than zero");
             return;
         }
         
         this.noOfRows = noOfRows;
         this.noOfColumns = noOfColumns;
         
-        // create a 2-D array for Location objects
+        // create a 2-D array for the Location objects
         this.locations = new Location[noOfRows][noOfColumns];
         
         for (int row = 0; row < noOfRows; row++) {
+            
             for (int column = 0; column < noOfColumns; column++) {
-                // create and initialize new Location object instance
+
                 Location location = new Location();
                 location.setColumn(column);
                 location.setRow(row);
                 location.setVisited(false);
             
-                // assign the Location object to the current position in array
                 locations[row][column] = location;
             }
         }

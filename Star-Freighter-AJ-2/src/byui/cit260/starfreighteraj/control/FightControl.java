@@ -9,6 +9,7 @@ import byui.cit260.starfreighteraj.model.Enemy;
 import byui.cit260.starfreighteraj.model.Game;
 import byui.cit260.starfreighteraj.model.Player;
 import java.util.Random;
+import star.freighter.aj.StarFreighterAJ;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.util.Random;
 public class FightControl {
 
     public static void updateHitPoints(String characterType, double damage) {
-        Game game = GameControl.game;
+        Game game = StarFreighterAJ.getCurrentGame();
         if (characterType.equals("enemy")) {
             Enemy enemy = game.getEnemy();
             enemy.setHitPoints((int) (enemy.getHitPoints() + damage));
@@ -28,11 +29,13 @@ public class FightControl {
     }
 
     public static boolean hasPlayerLost() {
-        return GameControl.game.getPlayer().getHitPoints() <= 0;
+        Game game = StarFreighterAJ.getCurrentGame();
+        return game.getPlayer().getHitPoints() <= 0;
     }
 
     public static boolean hasPlayerWon() {
-        return GameControl.game.getEnemy().getHitPoints() <= 0;
+        Game game = StarFreighterAJ.getCurrentGame();
+        return game.getEnemy().getHitPoints() <= 0;
     }
     
     private Enemy enemy;

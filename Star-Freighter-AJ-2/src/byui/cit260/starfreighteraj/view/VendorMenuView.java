@@ -46,7 +46,7 @@ public class VendorMenuView extends View{
               + "\nO - Oxygen"
               + "\nF - Food"
               + "\nJ - Job Board"
-              + "\nS - Ship upgrades available"  
+             /* + "\nS - Ship upgrades available"  */
               + "\nQ - Leave Vendor"
               + "\n------------------------------------------------");
         
@@ -68,9 +68,9 @@ public class VendorMenuView extends View{
                 case "J":
                     this.displayJobsBoard();
                     break;
-                case "S":
+                /* case "S":
                     this.displayUpgradeView();
-                    break;
+                    break; */
                 default:
                     ErrorView.display(this.getClass().getName(), "You must enter a valid selection.");
                     break;
@@ -82,7 +82,7 @@ public class VendorMenuView extends View{
         return false;
     }
     
-    private void displayUpgradeView() {
+    /* private void displayUpgradeView() {
         // get the sorted list of upgrade items for the current game
         ShipUpgrade[] upgrade = GameControl.getSortedUpgradeList();
         
@@ -98,7 +98,7 @@ public class VendorMenuView extends View{
                                shipUpgrade.getUpgradeAvailable() + "\t    " +
                                shipUpgrade.getUpgradeType());
         }
-    }
+    } */
 
     private boolean buyOxygen() throws IOException {
         Game game = StarFreighterAJ.getCurrentGame();
@@ -121,7 +121,8 @@ public class VendorMenuView extends View{
         
         /* ONLY WAY IT CAN TELL WHAT "credit" IS. NO IDEA HOW TO MAKE IT READ THE
            ACTUAL "credit" ITEM IN THE INVENTORY AND ADD AND SUBTRACT FROM IT. */
-        int credit = 100;
+        int credit;
+        credit = 100;
         
         // Check to see if total is greater than current funds, display error if so
         if (total > credit) {

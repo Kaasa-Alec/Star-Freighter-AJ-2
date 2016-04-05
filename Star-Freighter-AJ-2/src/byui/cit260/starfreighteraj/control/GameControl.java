@@ -30,8 +30,7 @@ import java.io.ObjectOutputStream;
  */
 public class GameControl {
 
-    // Jeffrey's FightControl
-    static Game game;
+    // Jeffrey's FightControl, currently hiding values
 
     public static Player createPlayer(String name) 
                                 throws GameControlException {
@@ -52,24 +51,24 @@ public class GameControl {
     public static void createNewGame(Player player) 
             throws MapControlException {
         
-        Game game = new Game(); //create new game
-        StarFreighterAJ.setCurrentGame(game); //save in StarFreighterAJ
+        Game game = new Game(); // create new game
+        StarFreighterAJ.setCurrentGame(game); // save in StarFreighterAJ
         
-        game.setPlayer(player); //save player in game
+        game.setPlayer(player); // save player in game
                 
-        //create the inventory list and save in the game
+        // create the inventory list and save in the game
         InventoryItem[] inventoryList = GameControl.createInventoryList();
         game.setInventory(inventoryList);
         
-        ShipModel ship = new ShipModel(); //create new starship
-        game.setStarShip(ship); //save starship in game 
+        ShipModel ship = new ShipModel(); // create new starship
+        game.setStarShip(ship); // save starship in game 
         
-        Map map = MapControl.createMap(); //create and initialize new map
-        game.setMap(map); //save map in 
+        Map map = MapControl.createMap(); // create and initialize new map
+        game.setMap(map); // save map in the game
         
         Actor[] actors = Actor.values();
         
-        //move actors to starting position in the map
+        // move actors to starting position in the map
         MapControl.moveActorsToStartingLocation(map, actors);
     }
         
@@ -98,49 +97,49 @@ public class GameControl {
         InventoryItem crate = new InventoryItem();
         crate.setDescription("Crates");
         crate.setQuantityInStock(0);
-        crate.setRequiredAmount(0);
+        crate.setRequiredAmount(10);
         inventory[Item.crate.ordinal()] = crate;
         
         InventoryItem pylon = new InventoryItem();
         pylon.setDescription("Pylon");
         pylon.setQuantityInStock(0);
-        pylon.setRequiredAmount(0);
+        pylon.setRequiredAmount(5);
         inventory [Item.pylon.ordinal()] = pylon;
         
         InventoryItem warpCells = new InventoryItem();
         warpCells.setDescription("Warp Cells");
         warpCells.setQuantityInStock(0);
-        warpCells.setRequiredAmount(0);
+        warpCells.setRequiredAmount(5);
         inventory [Item.warpCells.ordinal()] = warpCells;
         
         InventoryItem shields = new InventoryItem();
         shields.setDescription("Shields");
         shields.setQuantityInStock(0);
-        shields.setRequiredAmount(0);
+        shields.setRequiredAmount(5);
         inventory [Item.shields.ordinal()] = shields;
         
         InventoryItem weapons = new InventoryItem();
         weapons.setDescription("Weapons");
         weapons.setQuantityInStock(0);
-        weapons.setRequiredAmount(0);
+        weapons.setRequiredAmount(5);
         inventory [Item.weapons.ordinal()] = weapons;
         
         InventoryItem food = new InventoryItem();
         food.setDescription("Food");
         food.setQuantityInStock(0);
-        food.setRequiredAmount(0);
+        food.setRequiredAmount(10);
         inventory [Item.food.ordinal()] = food;
         
         InventoryItem oxygen = new InventoryItem();
         oxygen.setDescription("Oxygen");
         oxygen.setQuantityInStock(0);
-        oxygen.setRequiredAmount(0);
+        oxygen.setRequiredAmount(10);
         inventory [Item.oxygen.ordinal()] = oxygen;
         
         InventoryItem product = new InventoryItem();
         product.setDescription("Product");
         product.setQuantityInStock(0);
-        product.setRequiredAmount(0);
+        product.setRequiredAmount(20);
         inventory [Item.product.ordinal()] = product;
         
         InventoryItem credit = new InventoryItem();
@@ -197,9 +196,15 @@ public class GameControl {
         return StarFreighterAJ.getCurrentGame().getMap().getLocations();
     }
     
+    /* Dunno if we need this or not
+    
     public static ShipUpgrade[] getSortedUpgradeList() {
         System.out.println("\n*** getSortedUpgradeList stub function called ***");
         return null;
+    } */
+    
+    public static InventoryItem[] getInventory() {
+        return StarFreighterAJ.getCurrentGame().getInventory();
     }
     
     public static void saveGame(Game game, String filePath) 
@@ -234,6 +239,7 @@ public class GameControl {
        // close the outuput file
        StarFreighterAJ.setCurrentGame(game); // save in CuriousWorkmanship
     }
+    
     
     
 }

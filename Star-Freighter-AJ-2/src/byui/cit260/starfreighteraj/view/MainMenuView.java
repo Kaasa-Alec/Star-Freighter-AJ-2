@@ -100,6 +100,8 @@ public class MainMenuView extends View {
                 ErrorView.display("MainMenuView", ex.getMessage());
             }
             
+            this.console.println("\n*** Existing game loaded successfully!*** ");
+            
             // display the game menu
             GameMenuView gameMenu = new GameMenuView();
             gameMenu.display();
@@ -133,6 +135,9 @@ public class MainMenuView extends View {
             } catch (Exception ex) {
                 ErrorView.display("MainMenuView", ex.getMessage());
             }
+            
+            this.console.println("\n*** Game saved successfully! ***");
+            
         } catch (IOException ex) {
             Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
